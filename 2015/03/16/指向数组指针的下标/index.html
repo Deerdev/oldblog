@@ -6,15 +6,15 @@
   
   <title>指向数组指针的下标 | Sweetfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指向数组指针的下标">
 <meta property="og:url" content="http://www.sweetfish1991.com/2015/03/16/指向数组指针的下标/index.html">
 <meta property="og:site_name" content="Sweetfish">
-<meta property="og:description">
+<meta property="og:description" content="指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指向数组指针的下标">
-<meta name="twitter:description">
+<meta name="twitter:description" content="指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)">
   
     <link rel="alternative" href="/atom.xml" title="Sweetfish" type="application/atom+xml">
   
@@ -84,6 +84,10 @@
   <time datetime="2015-03-16T13:02:45.000Z" itemprop="datePublished">2015-03-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -100,12 +104,25 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)<br><a id="more"></a></p>
+<h2 id="1-指向数组指针的下标">1.指向数组指针的下标</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p=&amp;a[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>则有<code>p[1]</code>等同于<code>p+1</code>, <code>a[2]</code><br><code>p[-1]</code>等同于<code>p-1</code>, <code>a[0]</code></p>
+<hr>
+<h2 id="2-指针与引用互换">2.指针与引用互换</h2><p>引用—&gt;指针<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> point;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = point;</span><br><span class="line"><span class="type">int</span> *cp = &amp;<span class="keyword">ref</span>;</span><br></pre></td></tr></table></figure></p>
+<p>指针—&gt;引用<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *cp;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = *p;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="3-关于除法取整和不取整——取余">3.关于除法取整和不取整——取余</h2><p>除运算除了使用反余杠<code>/</code>表示以外，很重要的一点是别忘了，对于整数类型，或字符类型的数据进行除运算时，小数部分将被截掉，因为整型类型的数据不能保存小数部分，如：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>得到结果：a 等于 2，而不是 2.5。<br>注意：可能大家会以为，之所以 5 /2 结果是 2,是因为我们让一个整型变量 a 等于它，其实原因并不是因为 a 是<br>int 类型，请看：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>虽然 a 现在被声明为实型，但执行这句程序，ａ的值仍然是 2。事实上，精度丢失是在计算机计算 5/2<br>时就发生了。所以，准确的写法是：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2.0</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，只有除数或被除数至少需要有一个是明确指定为实型，除运算才能得到小数部分。这里我们也更明确类似于 5 和 5.0 在计算机中的区别：虽然数值大小一样，但加了 5.0 被当成实型数对待，而 5 则被当成整型数。</p>
+<p>在 C 和 C++里， <code>%</code> 进行求余数运算，求余数也称<code>求模</code>，以下是求余操作的例子：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> % <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>结果是，a 等于 1,即：5 除以2，余数为1。</p>
+
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://www.sweetfish1991.com/2015/03/16/指向数组指针的下标/" data-id="ci7kcehsg000efsuqx8jrq798" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://www.sweetfish1991.com/2015/03/16/指向数组指针的下标/" data-id="ci7vtjb3o000go4uqkyjx0u2e" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -113,17 +130,19 @@
       
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2015/03/16/指针与引用互换/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/03/16/字符数组和字符串/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
       <div class="article-nav-title">
         
-          指针与引用互换
+          字符数组和字符串
         
       </div>
     </a>
@@ -165,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/高质量程序设计指南-读书笔记/">高质量程序设计指南-读书笔记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/高质量程序设计指南-读书笔记/">高质量程序设计指南-读书笔记</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -174,7 +193,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a><a href="/tags/C-C-读书笔记/" style="font-size: 10px;">C/C++ 读书笔记</a><a href="/tags/读书笔记/" style="font-size: 15px;">读书笔记</a>
+      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a><a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a>
     </div>
   </div>
 
@@ -183,7 +202,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -199,19 +218,19 @@
           </li>
         
           <li>
-            <a href="/2015/03/16/字符数组和字符串/">字符数组和字符串</a>
+            <a href="/2015/03/16/静态函数与普通函数[转]/">静态函数与普通函数[转]</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指针与引用互换/">指针与引用互换</a>
+            <a href="/2015/03/16/没事翻翻/">没事翻翻[来自网络]</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指向数组指针的下标/">指向数组指针的下标</a>
+            <a href="/2015/03/16/C++老记不住看不懂呀/">C++老记不住看不懂呀</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指向const的对象的指针和const指针/">指向const的对象的指针和const指针</a>
+            <a href="/2015/03/16/CC++语言实现动态数组/">C/C++语言实现动态数组[转]</a>
           </li>
         
       </ul>

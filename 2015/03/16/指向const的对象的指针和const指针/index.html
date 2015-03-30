@@ -6,15 +6,15 @@
   
   <title>指向const的对象的指针和const指针 | Sweetfish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
+  <meta name="description" content="指向const对象的指针和const指针">
 <meta property="og:type" content="article">
 <meta property="og:title" content="指向const的对象的指针和const指针">
 <meta property="og:url" content="http://www.sweetfish1991.com/2015/03/16/指向const的对象的指针和const指针/index.html">
 <meta property="og:site_name" content="Sweetfish">
-<meta property="og:description">
+<meta property="og:description" content="指向const对象的指针和const指针">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="指向const的对象的指针和const指针">
-<meta name="twitter:description">
+<meta name="twitter:description" content="指向const对象的指针和const指针">
   
     <link rel="alternative" href="/atom.xml" title="Sweetfish" type="application/atom+xml">
   
@@ -84,6 +84,10 @@
   <time datetime="2015-03-16T13:02:17.000Z" itemprop="datePublished">2015-03-16</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-C/">C/C++</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -100,12 +104,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
+        <p>指向const对象的指针和const指针<br><a id="more"></a></p>
+<p><em>简单描述：</em><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> me；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * p1=&amp;me；<span class="comment">//p1可变，*p1不可变，此时不能用*p1来修改，但是p1可以转向 </span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p2=&amp;me；<span class="comment">//p2不可变，*p2可变，此时允许*p2来修改其值，但是p2不能转向。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p3=&amp;me；<span class="comment">//p3不可变，*p3也不可变，此时既不能用*p3来修改其值，也不能转向</span></span><br></pre></td></tr></table></figure></p>
+<p>　　如果const位于星号的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；如果const位于星号的右侧，const就是修饰指针本身，即指针本身是常量<br>还有：<code>int const *p</code><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、指向const的指针">一、指向const的指针</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp；</span><br></pre></td></tr></table></figure>
+<p>◎这里cp是一个指向double类型const对象的指针，const限定了cp指针所指向的对象类型，而非cp本身。cp本身不是const。<br>◎定义时不需要对它进行初始化，如果需要的话，允许给cp重新赋值，使其指向另一个const对象。<br>◎不能通过cp修改其所指对象的值：错  *cp=42;<br>◎不能把一个const对象的地址赋值给一个普通、非const对象的指针：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">double</span> *ptr=&amp;pi;   	<span class="comment">//错</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp=&amp;pi;   <span class="comment">//对</span></span><br></pre></td></tr></table></figure></p>
+<p>◎允许把非const对象的地址赋值给指向const对象的指针：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp;</span><br><span class="line">cp= &amp;dval; 	 <span class="comment">//对</span></span><br></pre></td></tr></table></figure></p>
+<p>◎由上知，指向const的指针所指的对象并非const，此时可通过其他方法修改所指的对象：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">dval=</span><span class="number">3.14</span>;</span><br><span class="line">*<span class="variable">cp=</span><span class="number">3.14</span>;  错</span><br><span class="line"><span class="variable">cp=</span> &amp;dval;</span><br><span class="line">double *<span class="variable">ptr=</span> &amp;dval;</span><br><span class="line">*<span class="variable">ptr=</span> <span class="number">2.72</span>;      //修改了<span class="variable">dval=</span><span class="number">2.72</span></span><br><span class="line">cout&lt;&lt; *cp;     //dval的值被修改了，print <span class="number">2.72</span></span><br></pre></td></tr></table></figure>
+<p>◎const指针可以接受const和非const地址，但是非const指针只能接受非const地址。所以const指针的能力更强一些，所以尽量多用const指针，这是一种习惯。</p>
+<h2 id="二、const指针">二、const指针</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> <span class="built_in">num</span>=<span class="number">0</span>；</span><br><span class="line"><span class="built_in">int</span> <span class="keyword">const</span> *cp= <span class="built_in">num</span>;    <span class="comment">//定义&amp;初始化</span></span><br></pre></td></tr></table></figure>
+<p>◎cp是指向int型对象的const指针，指针的值不能修改，意味着不能使cp指向其他对象。任何给const指针赋值的行为都是错的。<br>◎const指针必须在定义时初始化。<br>◎const指针cp不可操作，但是[*cp]可以操作，修改所指向对象的值: </p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*<span class="variable">cp=</span><span class="number">1</span>;     //<span class="variable">num=</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、指向const对象的const指针">三、指向const对象的const指针</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> <span class="keyword">const</span> *cp= &amp;pi;</span><br></pre></td></tr></table></figure>
+<p>◎cp首先是一个const指针，指向double类型的const对象。<br>◎即不可修改cp所指对象的值，也不可修改该指针的指向（即cp中存放的地址）。</p>
+
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://www.sweetfish1991.com/2015/03/16/指向const的对象的指针和const指针/" data-id="ci7kcehsw000ffsuqliepy0q5" class="article-share-link" data-share="baidu">分享到</a>
+        <a data-url="http://www.sweetfish1991.com/2015/03/16/指向const的对象的指针和const指针/" data-id="ci7vtjb3z000jo4uqqkwfszn4" class="article-share-link" data-share="baidu">分享到</a>
       
 
       
@@ -113,6 +131,8 @@
       
 
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
+
     </footer>
   </div>
   
@@ -165,7 +185,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/高质量程序设计指南-读书笔记/">高质量程序设计指南-读书笔记</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/">C/C++</a><span class="category-list-count">15</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/读书笔记/">读书笔记</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/高质量程序设计指南-读书笔记/">高质量程序设计指南-读书笔记</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -174,7 +194,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a><a href="/tags/C-C-读书笔记/" style="font-size: 10px;">C/C++ 读书笔记</a><a href="/tags/读书笔记/" style="font-size: 15px;">读书笔记</a>
+      <a href="/tags/C-C/" style="font-size: 20px;">C/C++</a><a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a>
     </div>
   </div>
 
@@ -183,7 +203,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">6</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">11</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">十一月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/01/">一月 2014</a><span class="archive-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -199,19 +219,19 @@
           </li>
         
           <li>
-            <a href="/2015/03/16/字符数组和字符串/">字符数组和字符串</a>
+            <a href="/2015/03/16/静态函数与普通函数[转]/">静态函数与普通函数[转]</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指针与引用互换/">指针与引用互换</a>
+            <a href="/2015/03/16/没事翻翻/">没事翻翻[来自网络]</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指向数组指针的下标/">指向数组指针的下标</a>
+            <a href="/2015/03/16/C++老记不住看不懂呀/">C++老记不住看不懂呀</a>
           </li>
         
           <li>
-            <a href="/2015/03/16/指向const的对象的指针和const指针/">指向const的对象的指针和const指针</a>
+            <a href="/2015/03/16/CC++语言实现动态数组/">C/C++语言实现动态数组[转]</a>
           </li>
         
       </ul>
