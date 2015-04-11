@@ -3,9 +3,9 @@
   <title><![CDATA[Sweetfish]]></title>
   <subtitle><![CDATA[小短腿的鱼]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://www.sweetfish1991.com/"/>
+  <link href="http://blog.sweetfish1991.com/"/>
   <updated>2015-03-21T15:24:56.248Z</updated>
-  <id>http://www.sweetfish1991.com/</id>
+  <id>http://blog.sweetfish1991.com/</id>
   
   <author>
     <name><![CDATA[Sweetfish]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[第八章]]></title>
-    <link href="http://www.sweetfish1991.com/2015/03/17/%E7%AC%AC%E5%85%AB%E7%AB%A0.html"/>
-    <id>http://www.sweetfish1991.com/2015/03/17/第八章.html</id>
+    <link href="http://blog.sweetfish1991.com/2015/03/17/%E7%AC%AC%E5%85%AB%E7%AB%A0.html"/>
+    <id>http://blog.sweetfish1991.com/2015/03/17/第八章.html</id>
     <published>2015-03-17T01:04:49.000Z</published>
     <updated>2015-03-21T15:24:56.248Z</updated>
     <content type="html"><![CDATA[<p>第八章读书笔记<br><a id="more"></a></p>
@@ -32,16 +32,16 @@
     
     </summary>
     
-      <category term="读书笔记" scheme="http://www.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://blog.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="读书笔记" scheme="http://www.sweetfish1991.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://blog.sweetfish1991.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[《高质量程序设计指南-C/C++》_第七章]]></title>
-    <link href="http://www.sweetfish1991.com/2015/03/04/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0.html"/>
-    <id>http://www.sweetfish1991.com/2015/03/04/《高质量程序设计指南-CC++》第七章.html</id>
+    <link href="http://blog.sweetfish1991.com/2015/03/04/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0.html"/>
+    <id>http://blog.sweetfish1991.com/2015/03/04/《高质量程序设计指南-CC++》第七章.html</id>
     <published>2015-03-04T01:33:43.000Z</published>
     <updated>2015-03-09T13:00:53.950Z</updated>
     <content type="html"><![CDATA[<p>《高质量程序设计指南-C/C++》第七章读书笔记。</p>
@@ -113,16 +113,16 @@
     
     </summary>
     
-      <category term="读书笔记" scheme="http://www.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="读书笔记" scheme="http://blog.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
-      <category term="高质量程序设计指南-读书笔记" scheme="http://www.sweetfish1991.com/categories/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+      <category term="高质量程序设计指南-读书笔记" scheme="http://blog.sweetfish1991.com/categories/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[《高质量程序设计指南-C/C++》_第六章]]></title>
-    <link href="http://www.sweetfish1991.com/2015/03/03/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0.html"/>
-    <id>http://www.sweetfish1991.com/2015/03/03/《高质量程序设计指南-CC++》第六章.html</id>
+    <link href="http://blog.sweetfish1991.com/2015/03/03/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0.html"/>
+    <id>http://blog.sweetfish1991.com/2015/03/03/《高质量程序设计指南-CC++》第六章.html</id>
     <published>2015-03-03T07:55:25.000Z</published>
     <updated>2015-03-30T11:27:45.879Z</updated>
     <content type="html"><![CDATA[<p>《高质量程序设计指南-C/C++》第六章读书笔记。<br><a id="more"></a></p>
@@ -312,16 +312,16 @@
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[C中的static和C++中的static]]></title>
-    <link href="http://www.sweetfish1991.com/2014/11/26/C%E4%B8%AD%E7%9A%84static%E5%92%8CC++%E4%B8%AD%E7%9A%84static.html"/>
-    <id>http://www.sweetfish1991.com/2014/11/26/C中的static和C++中的static.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/11/26/C%E4%B8%AD%E7%9A%84static%E5%92%8CC++%E4%B8%AD%E7%9A%84static.html"/>
+    <id>http://blog.sweetfish1991.com/2014/11/26/C中的static和C++中的static.html</id>
     <published>2014-11-26T02:06:49.000Z</published>
     <updated>2015-03-16T14:49:31.406Z</updated>
     <content type="html"><![CDATA[<a id="more"></a>
@@ -332,16 +332,16 @@
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[静态函数与普通函数[转]]]></title>
-    <link href="http://www.sweetfish1991.com/2014/11/08/%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0%E4%B8%8E%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%5B%E8%BD%AC%5D.html"/>
-    <id>http://www.sweetfish1991.com/2014/11/08/静态函数与普通函数[转].html</id>
+    <link href="http://blog.sweetfish1991.com/2014/11/08/%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0%E4%B8%8E%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%5B%E8%BD%AC%5D.html"/>
+    <id>http://blog.sweetfish1991.com/2014/11/08/静态函数与普通函数[转].html</id>
     <published>2014-11-08T13:03:24.000Z</published>
     <updated>2015-03-30T12:18:14.545Z</updated>
     <content type="html"><![CDATA[<p>　　全局变量(外部变量)的说明之前再冠以<code>static</code> 就构成了静态的全局变量。全局变量本身就是静态存储方式， 静态全局变量当然也是静态存储方式。这两者在存储方式上并无不同。这两者的区别虽在于非静态全局变量的作用域是整个源程序， 当一个源程序由多个源文件组成时，非静态的全局变量在各个源文件中都是有效的。 而静态全局变量则限制了其作用域， 即只在定义该变量的源文件内有效， 在同一源程序的其它源文件中不能使用它。由于静态全局变量的作用域局限于一个源文件内，只能为该源文件内的函数公用， 因此可以避免在其它源文件中引起错误。<br><a id="more"></a></p>
@@ -393,16 +393,16 @@
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[C++小本子]]></title>
-    <link href="http://www.sweetfish1991.com/2014/08/28/C++%E5%B0%8F%E6%9C%AC%E5%AD%90.html"/>
-    <id>http://www.sweetfish1991.com/2014/08/28/C++小本子.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/08/28/C++%E5%B0%8F%E6%9C%AC%E5%AD%90.html"/>
+    <id>http://blog.sweetfish1991.com/2014/08/28/C++小本子.html</id>
     <published>2014-08-28T13:03:24.000Z</published>
     <updated>2015-03-30T12:14:57.123Z</updated>
     <content type="html"><![CDATA[<p>自己老记不住的东东！<br><a id="more"></a></p>
@@ -426,16 +426,16 @@
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[宏定义#ifndef、#def、#endif说明[转]]]></title>
-    <link href="http://www.sweetfish1991.com/2014/07/14/#ifndef%E3%80%81#def%E3%80%81#endif%E8%AF%B4%E6%98%8E.html"/>
-    <id>http://www.sweetfish1991.com/2014/07/14/#ifndef、#def、#endif说明.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/07/14/#ifndef%E3%80%81#def%E3%80%81#endif%E8%AF%B4%E6%98%8E.html"/>
+    <id>http://blog.sweetfish1991.com/2014/07/14/#ifndef、#def、#endif说明.html</id>
     <published>2014-07-14T13:03:24.000Z</published>
     <updated>2015-03-30T12:19:44.094Z</updated>
     <content type="html"><![CDATA[<p>#ifndef、#def、#endif说明<br><a id="more"></a></p>
@@ -528,16 +528,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[没事翻翻[来自网络]]]></title>
-    <link href="http://www.sweetfish1991.com/2014/07/12/%E6%B2%A1%E4%BA%8B%E7%BF%BB%E7%BF%BB.html"/>
-    <id>http://www.sweetfish1991.com/2014/07/12/没事翻翻.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/07/12/%E6%B2%A1%E4%BA%8B%E7%BF%BB%E7%BF%BB.html"/>
+    <id>http://blog.sweetfish1991.com/2014/07/12/没事翻翻.html</id>
     <published>2014-07-12T13:03:24.000Z</published>
     <updated>2015-03-30T12:14:00.276Z</updated>
     <content type="html"><![CDATA[<p>Q&amp;A的基本功<br><a id="more"></a></p>
@@ -639,16 +639,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[C/C++语言实现动态数组[转]]]></title>
-    <link href="http://www.sweetfish1991.com/2014/07/11/CC++%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84.html"/>
-    <id>http://www.sweetfish1991.com/2014/07/11/CC++语言实现动态数组.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/07/11/CC++%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84.html"/>
+    <id>http://blog.sweetfish1991.com/2014/07/11/CC++语言实现动态数组.html</id>
     <published>2014-07-11T13:03:24.000Z</published>
     <updated>2015-03-30T12:16:51.758Z</updated>
     <content type="html"><![CDATA[<p>C/C++语言实现动态数组<br><a id="more"></a></p>
@@ -685,16 +685,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[指向数组指针的下标]]></title>
-    <link href="http://www.sweetfish1991.com/2014/07/09/%E6%8C%87%E5%90%91%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%8B%E6%A0%87.html"/>
-    <id>http://www.sweetfish1991.com/2014/07/09/指向数组指针的下标.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/07/09/%E6%8C%87%E5%90%91%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%8B%E6%A0%87.html"/>
+    <id>http://blog.sweetfish1991.com/2014/07/09/指向数组指针的下标.html</id>
     <published>2014-07-09T13:02:45.000Z</published>
     <updated>2015-03-30T12:17:35.772Z</updated>
     <content type="html"><![CDATA[<p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)<br><a id="more"></a></p>
@@ -716,16 +716,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[指向const的对象的指针和const指针]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/22/%E6%8C%87%E5%90%91const%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8C%87%E9%92%88%E5%92%8Cconst%E6%8C%87%E9%92%88.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/22/指向const的对象的指针和const指针.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/22/%E6%8C%87%E5%90%91const%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8C%87%E9%92%88%E5%92%8Cconst%E6%8C%87%E9%92%88.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/22/指向const的对象的指针和const指针.html</id>
     <published>2014-01-22T13:02:17.000Z</published>
     <updated>2015-03-30T12:18:50.319Z</updated>
     <content type="html"><![CDATA[<p>指向const对象的指针和const指针<br><a id="more"></a></p>
@@ -748,16 +748,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[函数指针和指针函数]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/22/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/22/函数指针和指针函数.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/22/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/22/函数指针和指针函数.html</id>
     <published>2014-01-22T07:43:27.000Z</published>
     <updated>2015-03-16T14:46:17.478Z</updated>
     <content type="html"><![CDATA[<p>函数指针和指针函数<br><a id="more"></a></p>
@@ -784,16 +784,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[向上取整和向下取整]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/17/%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%E5%92%8C%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/17/向上取整和向下取整.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/17/%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%E5%92%8C%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/17/向上取整和向下取整.html</id>
     <published>2014-01-17T01:58:35.000Z</published>
     <updated>2015-03-30T11:25:52.490Z</updated>
     <content type="html"><![CDATA[<p>向上取整和向下取整<br><a id="more"></a></p>
@@ -844,16 +844,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[int main(int argc,char* argv[])详解]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/16/int%20main(int%20argc,char%20argv%5B%5D)%E8%AF%A6%E8%A7%A3.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/16/int main(int argc,char argv[])详解.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/16/int%20main(int%20argc,char%20argv%5B%5D)%E8%AF%A6%E8%A7%A3.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/16/int main(int argc,char argv[])详解.html</id>
     <published>2014-01-16T13:15:41.000Z</published>
     <updated>2015-03-16T14:28:16.319Z</updated>
     <content type="html"><![CDATA[<p>main函数的参数说明<br><a id="more"></a><br>主要是为了方便在<code>命令行</code>直接键入参数</p>
@@ -867,16 +867,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[数组指针和指针数组]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/16/%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/16/数组指针和指针数组.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/16/%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/16/数组指针和指针数组.html</id>
     <published>2014-01-16T07:47:14.000Z</published>
     <updated>2015-03-16T14:27:04.432Z</updated>
     <content type="html"><![CDATA[<p>数组指针和指针数组<br><a id="more"></a></p>
@@ -902,16 +902,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[字符数组和字符串]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/15/%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/15/字符数组和字符串.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/15/%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/15/字符数组和字符串.html</id>
     <published>2014-01-15T13:03:24.000Z</published>
     <updated>2015-03-30T12:19:35.344Z</updated>
     <content type="html"><![CDATA[<p>字符数组与字符串<br><a id="more"></a></p>
@@ -946,16 +946,16 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[Sizeof与Strlen的区别]]></title>
-    <link href="http://www.sweetfish1991.com/2014/01/15/Sizeof%E4%B8%8EStrlen%E7%9A%84%E5%8C%BA%E5%88%AB.html"/>
-    <id>http://www.sweetfish1991.com/2014/01/15/Sizeof与Strlen的区别.html</id>
+    <link href="http://blog.sweetfish1991.com/2014/01/15/Sizeof%E4%B8%8EStrlen%E7%9A%84%E5%8C%BA%E5%88%AB.html"/>
+    <id>http://blog.sweetfish1991.com/2014/01/15/Sizeof与Strlen的区别.html</id>
     <published>2014-01-15T07:48:05.000Z</published>
     <updated>2015-03-30T12:28:52.622Z</updated>
     <content type="html"><![CDATA[<p>Sizeof与Strlen的区别<br><a id="more"></a></p>
@@ -1009,9 +1009,9 @@ i++;
     
     </summary>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/tags/C-C/"/>
     
-      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+      <category term="C/C++" scheme="http://blog.sweetfish1991.com/categories/C-C/"/>
     
   </entry>
   
