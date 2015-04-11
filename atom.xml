@@ -1,0 +1,1018 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Sweetfish]]></title>
+  <subtitle><![CDATA[小短腿的鱼]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://www.sweetfish1991.com/"/>
+  <updated>2015-03-21T15:24:56.248Z</updated>
+  <id>http://www.sweetfish1991.com/</id>
+  
+  <author>
+    <name><![CDATA[Sweetfish]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[第八章]]></title>
+    <link href="http://www.sweetfish1991.com/2015/03/17/%E7%AC%AC%E5%85%AB%E7%AB%A0.html"/>
+    <id>http://www.sweetfish1991.com/2015/03/17/第八章.html</id>
+    <published>2015-03-17T01:04:49.000Z</published>
+    <updated>2015-03-21T15:24:56.248Z</updated>
+    <content type="html"><![CDATA[<p>第八章读书笔记<br><a id="more"></a></p>
+<h2 id="8-1-2_使用struct">8.1.2 使用struct</h2><p>在C++环境中，我们把C风格的struct叫做POD(Plain Old Data)对象，仅包含一些数据成员。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Student</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> ID;</span><br><span class="line">    <span class="keyword">char</span> firstName[<span class="number">5</span>];</span><br><span class="line">    <span class="keyword">char</span> lastName[<span class="number">6</span>];</span><br><span class="line">    <span class="keyword">char</span> email[<span class="number">20</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>虽然把数组当参数传递给函数的时候，数组会自动转换为指针，但是包装在struct/class中的数组，其内存空间完全属于该struct/class的对象所有。如果把struct/class当作参数传递给函数时，默认为值传递，其中的数组将全部复制到函数堆栈中。例如：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void <span class="func"><span class="keyword">func</span><span class="params">(Student s)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">sizeof</span>(s)&lt;&lt;endl;  <span class="comment">//56</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">Student</span> <span class="type">S0</span>;</span><br><span class="line"><span class="func"><span class="keyword">func</span><span class="params">(s0)</span>;</span></span><br></pre></td></tr></table></figure></p>
+<p>因此，当自定义的UDT/ADT中包含数组成员的时候，最好使用指针或引用传递该类型的对象，并且一定要防止数组元素<strong>越界</strong>，否则它会覆盖后面的结构成员。</p>
+<p>任何POD对象的初始化都可以使用<code>memset()</code>函数或其他类似的内存初始化函数。例如，用<code>memset()</code> 初始化Student对象s如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">memset</span>(&amp;s, <span class="number">0x00</span>, <span class="keyword">sizeof</span>(Student));</span><br></pre></td></tr></table></figure></p>
+<p>C风格的构造类型对象也可以在定义的时候指定初始值。我们可以仅指定第一个成员的初始值来初始化POD对象，后面的成员将自动初始化为0,就像数组初始化一样。例如：<code>Student s = { 0 }</code>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>第八章读书笔记<br>]]>
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://www.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="读书笔记" scheme="http://www.sweetfish1991.com/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[《高质量程序设计指南-C/C++》_第七章]]></title>
+    <link href="http://www.sweetfish1991.com/2015/03/04/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E4%B8%83%E7%AB%A0.html"/>
+    <id>http://www.sweetfish1991.com/2015/03/04/《高质量程序设计指南-CC++》第七章.html</id>
+    <published>2015-03-04T01:33:43.000Z</published>
+    <updated>2015-03-09T13:00:53.950Z</updated>
+    <content type="html"><![CDATA[<p>《高质量程序设计指南-C/C++》第七章读书笔记。</p>
+<a id="more"></a>
+<h2 id="7-1-2_指针类型及其支持的运算">7.1.2 指针类型及其支持的运算</h2><p>在指针的定义中</p>
+<pre><code><span class="keyword">int</span>* a,b,c;
+</code></pre><p>编译器会理解为</p>
+<pre><code><span class="keyword">int</span> *a,b,c;
+</code></pre><p>即只有a是int型的指针，而b，c是int型的变量。</p>
+<p>　　全局指针变量的默认初始值是NULL。而对于non-static局部指针变量p，必须显式的指定初值，否则p的初始值不可预测（不是NULL）。<strong>最安全的方式，在指针声明同时初始化它，要么赋给一个有效值，要么赋予NULL。</strong></p>
+<p>　　指针加/减一个正整数i，其含义并不是在其值上直接加/减i，还要包含指针所指向对象的字节数信息。例如：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *pInt = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">100</span>];</span><br><span class="line">pInt += <span class="number">50</span>;     <span class="comment">//编译器改写为pInt += 50*sizeof(int);  </span></span><br><span class="line">pInt ++;        <span class="comment">//即pInt += 1</span></span><br></pre></td></tr></table></figure></p>
+<p>因此void*类型指针不能参与算术运算，只能进行赋值、比较和sizeof()操作。而且不能对void*类型指针使用“*”来取其所指向的变量。</p>
+<h2 id="7-2-1_数组的本质">7.2.1 数组的本质</h2><p>　　任何数组，不论静态创建还是动态创建，其所有元素在内存中都是<strong>连续字节</strong>存放的。</p>
+<p>　　使用“[]”来引用数组元素时，编译器必须把它转换为同类型的指针表示形式，然后再编译。例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a[<span class="number">3</span>] = <span class="number">100</span>;             <span class="comment">//转换为*(a+3) = 100;</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; a[<span class="number">3</span>] &lt;&lt; endl;   <span class="comment">//转换为cout &lt;&lt; *(a+3) &lt;&lt;endl;</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<ul>
+<li><strong>任何两个数组之间不能直接赋值，即使是同类型数组。只能通过按元素逐个赋值，或者使用内存拷贝函数memcpy()。</strong></li>
+<li><strong>不存在元素个数为0的数组，但存在元素个数为0的容器，即空容器。</strong></li>
+<li><strong>标准C/C++不会对用户访问的数组是否越界进行任何检查，无论是静态的(编译时)检查还是动态的(运行时)检查。</strong></li>
+</ul>
+</blockquote>
+<h2 id="7-2-3_数组的传递">7.2.3 数组的传递</h2><p><code>sizeof(数组名)</code>和<code>sizeof(指针)</code>的区别:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a[],<span class="keyword">int</span> size)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(a)&lt;&lt;endl;  <span class="comment">//4</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; a[i] &lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//mian</span></span><br><span class="line"><span class="keyword">int</span> x[<span class="number">100</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt; <span class="keyword">sizeof</span>(x) &lt;&lt;endl;    <span class="comment">//400</span></span><br><span class="line">output(x,<span class="number">100</span>);</span><br></pre></td></tr></table></figure></p>
+<p>当数组作为参数传递给函数时，其实传递的是指针，编译器会改写为<code>void output(const int *const a, int size)</code>，当在函数内部使用下标访问数组时，编译器会转换为<code>*(a+i)</code>，<strong>因为C/C++不检查数组是否越界，所以数组作为参数时必须传入数组的大小<code>size</code></strong>。 </p>
+<p>　　针对多维数组作为参数传递时，必须指定除了第一维之外的所有维长度（元素个数）。例如二维数组：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> a[][20], <span class="keyword">int</span> line)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(a) &lt;&lt;endl;   <span class="comment">//4</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//main</span></span><br><span class="line"><span class="keyword">int</span> x[<span class="number">10</span>][<span class="number">20</span>] = &#123;&#123;<span class="number">100</span>&#125;&#125;;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(x) &lt;&lt;endl;   <span class="comment">//800</span></span><br><span class="line">output(x,<span class="number">10</span>);</span><br></pre></td></tr></table></figure></p>
+<p>以下表达方式等价：</p>
+<ol>
+<li>a[i][j]</li>
+<li>*(a[i] + j)</li>
+<li>(*(a+i))[j]</li>
+<li><em>(</em>(a+i) +j)<blockquote>
+<p>注意a是指向一维数组的指针，而不是单纯的指向int类型元素的指针，因此<code>(*(a+i)+j)</code>的值实际上是<code>((a+i*sizeof(int)*n)+j*sizeof(int))</code></p>
+</blockquote>
+</li>
+</ol>
+<h2 id="7-2-4_动态创建、删除数组">7.2.4 动态创建、删除数组</h2><p>数组类型和指针类型对应关系：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">#数组</span></span><br><span class="line">ElemType a[<span class="link_label">m</span>][<span class="link_reference">n</span>][<span class="link_label">b</span>]...[<span class="link_label">x</span>][<span class="link_reference">y</span>]</span><br><span class="line"><span class="header">#指针</span></span><br><span class="line">ElemType (*const pa)[<span class="link_label">n</span>][<span class="link_reference">b</span>]...[<span class="link_label">x</span>][<span class="link_reference">y</span>] //退化第一维</span><br></pre></td></tr></table></figure></p>
+<p>数组的创建与删除：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">#一维数组</span></span><br><span class="line">int *p = new int[1024];</span><br><span class="line">delete []p;</span><br><span class="line"></span><br><span class="line"><span class="header">#多维数组</span></span><br><span class="line">int (*p2)[<span class="link_label">4</span>] = new int[<span class="link_label">5</span>][<span class="link_reference">4</span>];           //退化第一维</span><br><span class="line">char (*p3)[<span class="link_label">5</span>][<span class="link_reference">7</span>] = new char[<span class="link_label">20</span>][<span class="link_reference">5</span>][<span class="link_label">7</span>];  //退化第一维</span><br><span class="line">delete [<span class="link_label"></span>]p2;        //不是delete [][]p2;</span><br><span class="line">delete [<span class="link_label"></span>]p3;        //不是delete [<span class="link_label"></span>][<span class="link_reference"></span>][<span class="link_label"></span>]p3;</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-3-1_字符数组和字符串">7.3.1 字符数组和字符串</h2><p>　　<code>字符数组</code>就是元素为字符变量的数组，而<code>字符串</code>则是以’\0’为结束符的字符数组。所以，<code>字数数组</code>不一定就是<code>字符串</code>。<br>　　字符串是可变长度的，因此无法记录自己的长度，所以加入字符’\0’来标记字符串的结束。<br>　　用字符串来初始化一个字符数组，字符数组长度要比字符串字面常量的长度大1，用来保存’\0’结束符。例如</p>
+<pre><code><span class="built_in">char</span> <span class="built_in">array</span><span class="literal">[]</span> = <span class="string">"hello"</span>;
+</code></pre><p>数组array的元素为：<code>{&#39;h&#39;,&#39;e&#39;,&#39;l&#39;,&#39;l&#39;,&#39;o&#39;,&#39;\0&#39;}</code>,长度为6。</p>
+<blockquote>
+<ul>
+<li>使用字符指针(<code>char *p</code>)来引用一个字符数组，这种情况下，用来操作字符指针的库函数(如strlen,strcpy)并不知道这个字符串是来自一个字符数组，会一直寻找<code>&#39;\0&#39;</code>结束符，如果字符数组中没有<code>&#39;\0&#39;</code>结束符，就会导致“内存访问冲突”。</li>
+<li>如果一直用字符数组的下标访问字符数组，则没有必要加入<code>&#39;\0&#39;</code>，但是大多数情况下总是把字符数组用作字符串的缓冲区，所以应在字符数组结尾放入<code>&#39;\0&#39;</code>。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> a1[] = &#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'\0'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>&#125;;</span><br><span class="line"><span class="keyword">char</span> a2[] = <span class="string">"hello"</span>;</span><br><span class="line"><span class="keyword">char</span> *p = <span class="string">"hello"</span>;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(a1)&lt;&lt;endl; <span class="comment">//5,数组占5字节</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">strlen</span>(a1)&lt;&lt;endl; <span class="comment">//2，字符串长度2</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(a2)&lt;&lt;endl; <span class="comment">//6，数组占6字节</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">strlen</span>(a2)&lt;&lt;endl; <span class="comment">//5，字符串长度5</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="keyword">sizeof</span>(p)&lt;&lt;endl;  <span class="comment">//4，指针p占4字节</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">strlen</span>(p)&lt;&lt;endl;  <span class="comment">//5，字符串长度5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<h2 id="7-3-2_字符指针的误区">7.3.2 字符指针的误区</h2><p>　　当使用字符指针来引用<strong>一个</strong>字符变量的时候，需要注意，因为C/C++默认<code>char*</code>表示字符串，例如:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> ch = <span class="string">'a'</span>;</span><br><span class="line"><span class="keyword">char</span> *p = &amp;ch;      <span class="comment">//字符指针指向字符变量</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; p &lt;&lt;endl;   <span class="comment">//错把字符指针当字符串</span></span><br><span class="line"><span class="preprocessor">#正确用法</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; *p &lt;&lt;endl;  <span class="comment">//取一个字符</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="7-3-3_字符串的拷贝和比较">7.3.3 字符串的拷贝和比较</h2><p>　　字符串的拷贝使用库函数<code>strcpy</code>、<code>strncpy</code>，不要试图使用“=”，这是字符指针的赋值。字符串的比较，使用库函数<code>strcmp</code>、<code>strncmp</code>等。</p>
+<blockquote>
+<p>对字符串进行复制的时候，要保证函数结束后目标字符串的结尾有<code>&#39;\0&#39;</code>结束符，某些字符串函数不会在目标字符串结尾自动追加<code>&#39;\0&#39;</code>，如<code>strncpy</code>和<code>strncat</code>，除非指定的n值比源串的长度大1，<code>strcpy</code>和<code>strcat</code>会把源串的结束符一并复制到目标串中。</p>
+</blockquote>
+<h2 id="7-4_函数指针">7.4 函数指针</h2><p>函数指针和指针函数详见：[]</p>
+<p><strong>函数指针数组</strong>声明和初始化：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> __cdecl (*fp[<span class="number">5</span>])(<span class="keyword">double</span>) = &#123;<span class="built_in">sqrt</span>,<span class="built_in">fabs</span>,<span class="built_in">cos</span>,<span class="built_in">sin</span>,<span class="built_in">exp</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>; k&lt;<span class="number">5</span>; k++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"Result:"</span>&lt;&lt;fp[k](<span class="number">10.25</span>)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="7-5_引用和指针">7.5 引用和指针</h2><p><code>引用</code>定义和初始化：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int <span class="keyword">m</span> = 0;</span><br><span class="line">int&amp; <span class="keyword">n</span> = <span class="keyword">m</span>;</span><br></pre></td></tr></table></figure></p>
+<p>n是对m的引用，对n的任何操作都是对m的操作。</p>
+<blockquote>
+<ul>
+<li>引用在创建的同时必须初始化，即引用到一个有效的对象。</li>
+<li>不存在NULL引用，引用必须与合法的存储单元关联。<br>将一个引用初始化为0：<code>const int&amp; rInt = 0;</code>，实质是创建一个临时int对象0来初始化它，该临时对象一直保留到rInt销毁的时候才会销毁。</li>
+<li>引用一旦被初始化就指向一个对象，<strong>不能</strong>被改变为对另一个对象的引用。</li>
+<li>引用的创建和销毁并不会调用类的拷贝构造函数和析构函数。</li>
+<li>在语言层面，引用的用法和对象一样；在二进制层面，引用一般都通过指针实现，编译器帮我们完成了转换。</li>
+</ul>
+</blockquote>
+<p><strong>引用的作用</strong>：函数参数的引用传递。（像指针一样高效，又具有变量使用的方便性和直观性，没有<code>指针传递</code>的“权限”大，减少危险）<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">fun</span><span class="params">(<span class="keyword">int</span>&amp; n)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line">fun(a); <span class="comment">//a以引用的形式传递，在函数fun内修改n就修改了a</span></span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>《高质量程序设计指南-C/C++》第七章读书笔记。</p>]]>
+    
+    </summary>
+    
+      <category term="读书笔记" scheme="http://www.sweetfish1991.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="高质量程序设计指南-读书笔记" scheme="http://www.sweetfish1991.com/categories/%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[《高质量程序设计指南-C/C++》_第六章]]></title>
+    <link href="http://www.sweetfish1991.com/2015/03/03/%E3%80%8A%E9%AB%98%E8%B4%A8%E9%87%8F%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%8C%87%E5%8D%97-CC++%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0.html"/>
+    <id>http://www.sweetfish1991.com/2015/03/03/《高质量程序设计指南-CC++》第六章.html</id>
+    <published>2015-03-03T07:55:25.000Z</published>
+    <updated>2015-03-30T11:27:45.879Z</updated>
+    <content type="html"><![CDATA[<p>《高质量程序设计指南-C/C++》第六章读书笔记。<br><a id="more"></a></p>
+<h2 id="6-10-1_存储类型">6.10.1 存储类型</h2><p>　　标准C为变量、常量、函数定义了4中存储类型：<code>extern</code> <code>auto</code> <code>static</code> <code>register</code>。一个变量或函数只能具有一种存储类型，一种生存期限。</p>
+<p>　　<code>extern</code>、static标识永久生存期限的变量和函数，<strong>区别</strong>：#默认情况下，全局变量和全局函数的存储类型是<code>extern</code>的，能够被定义在他们之后的同一编译单元内的函数调用；如果变量和函数被显式地的加上<code>extern</code>声明，那么其他编译单元中的函数也能调用他们。#显式地声明为<code>static</code>的全局变量和全局函数具有<code>static</code>存储类型，只能被同一个编译单元内的函数调用。</p>
+<p>　　<code>auto</code>、<code>register</code>标识临时生存期限的变量（只有变量才有临时生存期限）。区别：#<code>register</code>修饰的变量会被直接加载到CPU寄存器中（如果寄存器可以容纳），把经常使用的变量存入CPU寄存器，提高效率。（目前编译器已经可以自行评估变量频率添加，不需人为添加）</p>
+<p>　　<strong>局部变量</strong> 默认具有<code>auto</code>存储类型，除非用<code>static</code>或<code>register</code>定义，但无论如何，它们的作用域都是程序块的作用域，链接类型都是内连接，在进入函数的时候创建，在退出函数时销毁。#<code>register</code>、<code>auto</code>只能用于声明局部变量和局部常量</p>
+<p>　　<strong>全局变量</strong> 默认是<code>static</code>，除非在定义它的编译单元之外的其他编译单元中显式地用<code>extern</code>声明，否则不能访问。</p>
+<p>　　<strong>局部符号常量</strong> （不是函数内出现的字面常量）默认为<code>auto</code></p>
+<p>　　<strong>函数形参</strong>  默认为<code>auto</code></p>
+<h2 id="6-10-3_连接类型">6.10.3 连接类型</h2><p>3种：<code>外连接</code>，<code>内连接</code>，<code>无连接</code>； 表明一个标识符的可见性。</p>
+<p>　　<strong>外连接</strong>：如果一个标识符在其他编译单元或定义它的编译单元中的其他范围被调用。外连接的标识符需要分配运行时的存储空间。</p>
+<pre><code><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">bool</span> flag)</span></span>{}                    <span class="comment">//函数定义外连接</span>
+<span class="keyword">int</span> g_int;                              <span class="comment">//全局变量外连接</span>
+<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//MAX_LENGTH 变成外连接</span>
+<span class="keyword">namespace</span> <span class="title">NS_H</span>                            
+{
+    <span class="keyword">long</span> count;                        <span class="comment">//NS_H::count外连接</span>
+    <span class="function"><span class="keyword">bool</span> <span class="title">g</span><span class="params">()</span></span>;                          <span class="comment">//NS_H::g是外连接，但原型是内连接</span>
+}
+</code></pre><p>　　<strong>内连接</strong>：一个标识符在定义它的编译单元中的其他范围内被调用，但是不能在其他编译单元中被调用。</p>
+<pre><code><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f2</span><span class="params">()</span></span>{}              <span class="comment">//f2内连接</span>
+<span class="keyword">union</span>                           <span class="comment">//匿名联合的成员为内连接</span>
+{
+    <span class="keyword">long</span> count;
+    <span class="keyword">char</span> *p;
+};
+<span class="keyword">class</span> ME{...};                  <span class="comment">//Me是内连接</span>
+<span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//常量为内连接</span>
+<span class="keyword">typedef</span> <span class="keyword">long</span> Integer;           <span class="comment">//typedef为内连接</span>
+</code></pre><p>　　<strong>无连接</strong>：一个只能在声明它的范围内被调用的名字<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> f()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a;          //a是无连接</span><br><span class="line">    class B<span class="decorator">&#123;...&#125;</span>;   //局部类似无连接的，具有程序块作用域</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　区别连接类型和作用域：在两个编译单元中分别定义了同名<code>全局函数</code>和同名<code>全局变量</code>，如下</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#file1.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> var = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#file2.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">var</span> = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printf(<span class="string">'ab'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>单独编译file1.cpp和file2.cpp是可以的，同时Build整个程序时会“连接失败”。  因为它们连接类型都是外连接，存储类型都是extern，导致连接二义性。这不是作用域导致的，<strong>如果同名变量或同名函数，其中一个定义为static(变成内连接)</strong>，就可以了。</p>
+<table>
+<thead>
+<tr>
+<th>程序元素</th>
+<th style="text-align:center">存储类型</th>
+<th style="text-align:center">作用域</th>
+<th style="text-align:center">生成期限</th>
+<th style="text-align:center">连接类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局ADT/UDT定义</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>嵌套ADT/UDT定义</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">类</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>局部ADT/UDT定义</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">程序块</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">无连接</td>
+</tr>
+<tr>
+<td>非静态全局函数和全局变量</td>
+<td style="text-align:center">extern</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">永久</td>
+<td style="text-align:center">外连接</td>
+</tr>
+<tr>
+<td>静态全局函数和全局变量</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">永久</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>局部非静态变量/常量</td>
+<td style="text-align:center">auto</td>
+<td style="text-align:center">程序块</td>
+<td style="text-align:center">临时</td>
+<td style="text-align:center">无连接</td>
+</tr>
+<tr>
+<td>局部静态变量/常量</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">程序块</td>
+<td style="text-align:center">永久</td>
+<td style="text-align:center">无连接</td>
+</tr>
+<tr>
+<td>静态全局常量</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">永久</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>非静态全局变量</td>
+<td style="text-align:center">c和c++不同</td>
+<td style="text-align:center">c和c++不同</td>
+<td style="text-align:center">c和c++不同</td>
+<td style="text-align:center">c和c++不同</td>
+</tr>
+<tr>
+<td>类的静态成员</td>
+<td style="text-align:center">static</td>
+<td style="text-align:center">类</td>
+<td style="text-align:center">永久</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>类的非静态成员</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">类</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>名字空间的成员</td>
+<td style="text-align:center">不确定</td>
+<td style="text-align:center">名字空间</td>
+<td style="text-align:center">不确定</td>
+<td style="text-align:center">外连接</td>
+</tr>
+<tr>
+<td>外部函数原型</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>程序块中的函数原型</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">程序库</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+<tr>
+<td>宏定义</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">文件</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">内连接</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-11_递归">6.11 递归</h2><p>递归函数进行下去的原因：</p>
+<ol>
+<li>函数进入下一轮递归的时候并没有退出，当前堆栈的内容并没有销毁</li>
+<li>函数内的局部变量都是动态建立的，即每次调用进入函数时才建立（压栈），当函数返回时才销毁(出栈)，保证局部变量有序销毁。</li>
+<li>函数堆栈是自动增长的，理论上只要调用它的线程的堆栈足够大，他就会按需增长，直到达到最大堆栈限制为止(堆栈溢出)。</li>
+</ol>
+<p>　　使用<code>递归</code>反复调用会占用大量堆栈空间，开销很大；使用<code>迭代</code>只是发生在函数内部，反复使用局部变量进行计算，因此开销比递归小得多；但是<code>递归</code>能够直观的反应问题，所以需要权衡程序的性能和清晰度。例如计算斐波那契第n项$$2^n$$次递归调用，当n很大可能导致系统崩溃。</p>
+<blockquote>
+<p><strong>不要使用间接递归，即一个函数通过调用另一个函数了调用自己，损害程序清晰性。</strong></p>
+</blockquote>
+<h2 id="6-12_断言">6.12 断言</h2><p>　　<code>断言</code>(assert)：如果表达式值为0（假），则输出错误消息并终止程序（一般还会弹窗提醒，说明在什么地方引发了assert）。</p>
+<p>　　C/C++中断言是assert(expression)宏，当expression为假时，调用库函数abort()终止程序。由于assert(expression)宏体全部被条件编译伪指令#ifdef_DEBUG和#endif包含，所以assert()只在Debug版本里有效。</p>
+<blockquote>
+<ul>
+<li><strong>在函数的入口处，使用断言检查参数的有效性（合法性）。</strong></li>
+<li><strong>给assert加注释，表明assert究竟做什么</strong></li>
+<li><strong>一般教科书都鼓励程序员们进行防错设计，但要记住这种编程风格可能会隐瞒错误。当进行防错设计时，如果“不可能发生”的事情的确发生了，则要使用断言进行报警。</strong></li>
+</ul>
+</blockquote>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例子</span></span><br><span class="line"><span class="type">char</span> *clone_string(<span class="keyword">const</span> <span class="type">char</span> *source)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *<span class="literal">result</span>;</span><br><span class="line">    assert(source != <span class="type">NULL</span>);</span><br><span class="line">    <span class="literal">result</span> = (<span class="type">char</span> *)malloc(strlen(source) + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        strcpy(<span class="literal">result</span>, source);</span><br><span class="line">        assert(strcmp(<span class="literal">result</span>, source) == <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意到我对source是否为NULL是用assert检查的，但对result是不是为NULL是用if语句判断的，这是因为在调用代码正确的情况下source必然不为NULL，如果断言失败，说明调用代码中有错误，需要修改；但result作为malloc的返回值则不一定，在malloc代码无误的情况下仍然可能返回NULL——当内存块不足时。最后又用assert对strcpy的结果进行检查，因为只要代码正确，无论什么情况strcpy应该正常完成复制，它没有malloc那种异常情况存在。</p>
+<h1 id="6-13_使用const提高函数的健壮性">6.13 使用const提高函数的健壮性</h1><p>　　const不仅仅是定义常量，更大的魅力是可以修饰函数的参数和返回值，甚至函数的定义体。</p>
+<blockquote>
+<ul>
+<li>对于ADT/UDT的输入参数，应该将“值传递”改为“const &amp;传递”，提高效率。例如，将void Func(A a)改为void Func(const A &amp;a)。</li>
+<li>对于基本数据类型的输入参数，不需要修改。例如，不要把void Func(int a)改为void Func(const int &amp;a)。</li>
+</ul>
+</blockquote>
+<p>　　<strong>const修饰函数的返回值</strong>：虽然函数返回值采用“const &amp;”方式可以提高效率，例如：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A&amp; GetA(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure></p>
+<p>但一定要搞清楚函数究竟是想返回一个对象的“拷贝”还是仅返回“别名”(即引用)就可以了，否则程序易出错。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>《高质量程序设计指南-C/C++》第六章读书笔记。<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[C中的static和C++中的static]]></title>
+    <link href="http://www.sweetfish1991.com/2014/11/26/C%E4%B8%AD%E7%9A%84static%E5%92%8CC++%E4%B8%AD%E7%9A%84static.html"/>
+    <id>http://www.sweetfish1991.com/2014/11/26/C中的static和C++中的static.html</id>
+    <published>2014-11-26T02:06:49.000Z</published>
+    <updated>2015-03-16T14:49:31.406Z</updated>
+    <content type="html"><![CDATA[<a id="more"></a>
+<p>C中static函数只限制在定义的cpp文件中使用…未完…</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[main函数的参数说明。]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[静态函数与普通函数[转]]]></title>
+    <link href="http://www.sweetfish1991.com/2014/11/08/%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0%E4%B8%8E%E6%99%AE%E9%80%9A%E5%87%BD%E6%95%B0%5B%E8%BD%AC%5D.html"/>
+    <id>http://www.sweetfish1991.com/2014/11/08/静态函数与普通函数[转].html</id>
+    <published>2014-11-08T13:03:24.000Z</published>
+    <updated>2015-03-30T12:18:14.545Z</updated>
+    <content type="html"><![CDATA[<p>　　全局变量(外部变量)的说明之前再冠以<code>static</code> 就构成了静态的全局变量。全局变量本身就是静态存储方式， 静态全局变量当然也是静态存储方式。这两者在存储方式上并无不同。这两者的区别虽在于非静态全局变量的作用域是整个源程序， 当一个源程序由多个源文件组成时，非静态的全局变量在各个源文件中都是有效的。 而静态全局变量则限制了其作用域， 即只在定义该变量的源文件内有效， 在同一源程序的其它源文件中不能使用它。由于静态全局变量的作用域局限于一个源文件内，只能为该源文件内的函数公用， 因此可以避免在其它源文件中引起错误。<br><a id="more"></a></p>
+<ul>
+<li>static全局变量与普通的全局变量有什么区别：static全局变量只初使化一次，防止在其他文件单元中被引用;</li>
+<li>static局部变量和普通局部变量有什么区别：static局部变量只被初始化一次，下一次依据上一次结果值；</li>
+<li>static函数与普通函数有什么区别：static函数在内存中只有一份，普通函数在每个被调用中维持一份拷贝。</li>
+</ul>
+<hr>
+<p>C程序一直由下列部分组成：<br>　　1）正文段——CPU执行的机器指令部分；一个程序只有一个副本；只读，防止程序由于意外事故而修改自身指令；<br>　　2）初始化数据段（数据段）——在程序中所有赋了初值的全局变量，存放在这里。<br>　　3）非初始化数据段（bss段）——在程序中没有初始化的全局变量；内核将此段初始化为0。<br>　　4）栈——增长方向：自顶向下增长；自动变量以及每次函数调用时所需要保存的信息（返回地址；环境信息）。<br>　　5）堆——动态存储分。</p>
+<p>在全局变量之前加上关键字static，全局变量就被定义成为一个全局静态变量。<br>　　1）内存中的位置：静态存储区（静态存储区在整个程序运行期间都存在）<br>　　2）初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）<br>　　3）作用域：全局静态变量在声明他的文件之外是不可见的。准确地讲从定义之处开始到文件结尾。</p>
+<p>定义全局静态变量的好处：<br>　　<1>不会被其他文件所访问，修改<br>　　<2>其他文件中可以使用相同名字的变量，不会发生冲突。</2></1></p>
+<h3 id="局部静态变量">局部静态变量</h3><p>在局部变量之前加上关键字static，局部变量就被定义成为一个局部静态变量。<br>　　1）内存中的位置：静态存储区<br>　　2）初始化：未经初始化的全局静态变量会被程序自动初始化为0（自动对象的值是任意的，除非他被显示初始化）<br>　　3）作用域：作用域仍为局部作用域，当定义它的函数或者语句块结束的时候，作用域随之结束。</p>
+<blockquote>
+<p>注：当static用来修饰局部变量的时候，它就改变了局部变量的存储位置，从原来的栈中存放改为静态存储区。但是局部静态变量在离开作用域之后，并没有被销毁，而是仍然驻留在内存当中，直到程序结束，只不过我们不能再对他进行访问。</p>
+</blockquote>
+<p>　　当static用来修饰全局变量的时候，它就改变了全局变量的作用域（在声明他的文件之外是不可见的），但是没有改变它的存放位置，还是在静态存储区中。</p>
+<h3 id="静态函数">静态函数</h3><blockquote>
+<p>在函数的返回类型前加上关键字static，函数就被定义成为静态函数。</p>
+</blockquote>
+<p>函数的定义和声明默认情况下是extern的，但静态函数只是在声明他的文件当中可见，不能被其他文件所用。</p>
+<p>定义静态函数的好处：<br>　　<1> 其他文件中可以定义相同名字的函数，不会发生冲突<br>　　<2> 静态函数不能被其他文件所用。 存储说明符auto，register，extern，static，对应两种存储期：自动存储期和静态存储期。 auto和register对应自动存储期。具有自动存储期的变量在进入声明该变量的程序块时被建立，它在该程序块活动时存在，退出该程序块时撤销。</2></1></p>
+<p>　　关键字extern和static用来说明具有静态存储期的变量和函数。用static声明的局部变量具有静态存储持续期 （static storage duration），或静态范围（static extent）。虽然他的值在函数调用之间保持有效，但是其名字的可视 性仍限制在其局部域内。静态局部对象在程序执行到该对象的声明处时被首次初始化。</p>
+<p>由于static变量的以上特性，可实现一些特定功能。</p>
+<ul>
+<li>统计次数功能<br>声明函数的一个局部变量，并设为static类型，作为一个计数器，这样函数每次被调用的时候就可以进行计数。这是统计函数被调用次数的最好的办法，因为这个变量是和函数息息相关的，而函数可能在多个不同的地方被调用，所以从调用者的角度来统计比较困难。</li>
+<li>C语言中使用静态函数的好处：<br>静态函数会被自动分配在一个一直使用的存储区，直到退出应用程序实例，避免了调用函数时压栈出栈，速度快很多。</li>
+</ul>
+<p>　　关键字“static”，译成中文就是“静态的”，所以内部函数又称静态函数。但此处“static”的含义不是指存储方式，而是指对函数的作用域仅局限于本文件。 使用内部函数的好处是：不同的人编写不同的函数时，不用担心自己定义的函数，是否会与其它文件中的函数同名，因为同名也没有关系。 </p>
+<h3 id="c语言中static的语义">c语言中static的语义</h3><p>1.static变量:<br>1).局部<br>　　a.静态局部变量在函数内定义,生存期为整个源程序，但作用域与自动变量相同，只能在定义该变量的函数内使用。退出该函数后， 尽管该变量还继续存在，但不能使用它。<br>　　b.对基本类型的静态局部变量若在说明时未赋以初值，则系统自动赋予0值。而对自动变量不赋初值，则其值是不定的。</p>
+<p>2). 全局全局变量本身就是静态存储方式， 静态全局变量当然也是静态存储方式。但是他们的作用域，非静态全局 变量的作用域是整个源程序（多个源文件可以共同使用）； 而静态全局变量则限制了其作用域， 即只在定义该变量的源文件内有效， 在同一源程序的其它源文件中不能使用它。</p>
+<p>2.static函数（也叫内部函数）<br>　　只能被本文件中的函数调用，而不能被同一程序其它文件中的函数调用。区别于一般的非静态函数（外部函数） static在c里面可以用来修饰变量，也可以用来修饰函数。 先看用来修饰变量的时候。变量在c里面可分为存在全局数据区、栈和堆里。其实我们平时所说的堆栈是栈而不包含对，不要弄混。</p>
+<p>区别1：</p>
+<blockquote>
+<p>静态成员函数实际上是一个全局函数,不依赖一个类的对象. 而属于类，不创建对象也可调用。<br>普通成员函数依赖一个类的对象,也就是它有一个隐藏的调用参数（this）指针,必须指向一个类的对象。</p>
+</blockquote>
+<p>区别2：</p>
+<blockquote>
+<p>静态函数只能访问类中的静态成员变量；</p>
+</blockquote>
+<p>区别3:</p>
+<blockquote>
+<p>如果类的成员函数想作为回调函数来使用，如创建线程等，一般只能将它定义为静态成员函数才行。</p>
+</blockquote>
+<p>　　静态函数无this指针,所以它不能直接存取该类中非静态成员,不能被声明为const,volatile,virtual,不需要经由类的对象来调用,即可以这样调用ClassName::ClassStaticFunc(…)</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>　　全局变量(外部变量)的说明之前再冠以<code>static</code> 就构成了静态的全局变量。全局变量本身就是静态存储方式， 静态全局变量当然也是静态存储方式。这两者在存储方式上并无不同。这两者的区别虽在于非静态全局变量的作用域是整个源程序， 当一个源程序由多个源文件组成时，非静态的全局变量在各个源文件中都是有效的。 而静态全局变量则限制了其作用域， 即只在定义该变量的源文件内有效， 在同一源程序的其它源文件中不能使用它。由于静态全局变量的作用域局限于一个源文件内，只能为该源文件内的函数公用， 因此可以避免在其它源文件中引起错误。<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[C++小本子]]></title>
+    <link href="http://www.sweetfish1991.com/2014/08/28/C++%E5%B0%8F%E6%9C%AC%E5%AD%90.html"/>
+    <id>http://www.sweetfish1991.com/2014/08/28/C++小本子.html</id>
+    <published>2014-08-28T13:03:24.000Z</published>
+    <updated>2015-03-30T12:14:57.123Z</updated>
+    <content type="html"><![CDATA[<p>自己老记不住的东东！<br><a id="more"></a></p>
+<h2 id="(1)">(1)</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">f</span><span class="params">(int *)</span></span></span><br><span class="line"><span class="function"><span class="title">f</span><span class="params">(int *const)</span></span></span><br><span class="line"><span class="function"><span class="title">f</span><span class="params">(const int *)</span></span></span><br></pre></td></tr></table></figure>
+<p>  第二个函数const修饰指针本身，而不是指针所指向的对象。<br>  第三个函数const修饰指针所指向的对象。</p>
+<hr>
+<h2 id="(2)">(2)</h2><p>|逗号操作符，循环条件判断<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>（<span class="built_in">cin</span> &gt;&gt; ival, !<span class="built_in">cin</span>.eof() )</span><br></pre></td></tr></table></figure></p>
+<p><strong>逗号操作符的求解过程</strong>：首先计算它的每一个操作数，然后返回最右边的操作数作为整个操作的结果。<br>　　因此，循环条件只读入cin而忽略了其结果，该条件的结果是 !cin.eof()的值。如果cin到达文件结束符，条件为假。退出循环。若cin没有达到文件结束符，则不管读取时是否发生了其他可能遇到的错误。都进入循环。</p>
+<hr>
+<h2 id="(3)">(3)</h2><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title">A</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">x</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>类中成员函数的const写在后面，并且在该成员函数中：</p>
+<ol>
+<li>不能对成员进行赋值。</li>
+<li>不能调用成员的非const成员函数(不会改变对象中成员变量的数值)。</li>
+<li>将类数据成员传递给外部函数时，将为该数据成员加上const属性。</li>
+</ol>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>自己老记不住的东东！<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[宏定义#ifndef、#def、#endif说明[转]]]></title>
+    <link href="http://www.sweetfish1991.com/2014/07/14/#ifndef%E3%80%81#def%E3%80%81#endif%E8%AF%B4%E6%98%8E.html"/>
+    <id>http://www.sweetfish1991.com/2014/07/14/#ifndef、#def、#endif说明.html</id>
+    <published>2014-07-14T13:03:24.000Z</published>
+    <updated>2015-03-30T12:19:44.094Z</updated>
+    <content type="html"><![CDATA[<p>#ifndef、#def、#endif说明<br><a id="more"></a></p>
+<p>(以下内容均来自网络整理)</p>
+<p>　　这几个宏是为了进行条件编译。一般情况下，源程序中所有的行都参加编译。但是有时希望对其中一部分内容只在满足一定条件才进行编译，也就是对一部分内容指定编译的条件，这就是“条件编译”。有时，希望当满足某条件时对一组语句进行编译，而当条件不满足时则编译另一组语句。 </p>
+<p>　　在c语言中，对同一个变量或者函数进行多次声明是不会报错的。所以如果h文件里只是进行了声明工作，即使不使用# ifndef宏定义，一个c文件多次包含同一个h文件也不会报错。使用#ifndef可以避免下面这种错误：如果在h文件中定义了全局变量，一个c文件包含同一个h文件多次，如果不加#ifndef宏定义，会出现变量重复定义的错误；如果加了#ifndef，则不会出现这种错.</p>
+<p>C++头文件条件编译：</p>
+<p><code>#ifndef 标识1</code>  //判断”标识1”是否定义，如果被定义则返回假，如果没有被定义则返回真。</p>
+<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/</span><br><span class="line">语句1 <span class="comment">#ifndef 标识1</span></span><br><span class="line">语句2 <span class="comment">#define 标识1</span></span><br><span class="line">语句3 <span class="comment">#endif</span></span><br><span class="line">语句4 ……</span><br><span class="line">语句5 ……</span><br><span class="line">/<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/</span><br></pre></td></tr></table></figure>
+<p>该段代码意思是：如果标识1没有被定义，则重定义标识1，即执行语句2、语句3;如果标识1已经被定义，则直接跳过语句2、语句3，直接执行语句4、语句5、……</p>
+<blockquote>
+<p>备注：#ifndef 和 #endif 要一起使用，如果丢失#endif，可能会报错。</p>
+</blockquote>
+<p>　　千万不要忽略了头文件中的#ifndef，这是一个很关键的东西。比如你有两个C文件，这两个C文件都include了同一个头文件。而编译时，这两个C文件要一同编译成一个可运行文件，于是问题来了，大量的声明冲突。</p>
+<p>例如要编写头文件test.h，在头文件开头写上两行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> _TEST_H</span><br><span class="line"><span class="hexcolor">#def</span>ine _TEST_H<span class="comment">//一般是文件名的大写 头文件结尾写上一行：</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>这样一个工程文件里同时包含两个test.h时，就不会出现重定义的错误了。</p>
+<blockquote>
+<p><strong>分析:</strong><br>当第一次包含test.h时，由于没有定义_TEST_H，条件为真，这样就会包含（执行）#ifndef _TEST_H和#endif之间的代码，当第二次包含test.h时前面一次已经定义了_TEST_H，条件为假，#ifndef _TEST_H和#endif之间的代码也就不会再次被包含，这样就避免了重定义了.</p>
+</blockquote>
+<p>　　最好还是把头文件的内容都放在#ifndef和#endif中。不管头文件会不会被多个文件引用，都要加上这个。一般格式是这样的：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> &lt;标识&gt;</span><br><span class="line"><span class="hexcolor">#def</span>ine &lt;标识&gt;</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>　　&lt;标识&gt;在理论上来说可以是自由命名的，但每个头文件的这个“标识”都应该是唯一的。标识的命名规则一般是头文件名全大写，前面加下划线，并把文件名中的“.”也变成下划线，如：stdio.h<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> _STDIO_H</span><br><span class="line"><span class="hexcolor">#def</span>ine _STDIO_H</span><br><span class="line">......</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>条件编译命令最常见的形式为： </p>
+<pre><code><span class="id">#ifdef</span> 标识符 
+程序段<span class="number">1</span> 
+<span class="id">#else</span> 
+程序段<span class="number">2</span> 
+<span class="id">#endif</span> 
+</code></pre><p>　　它的作用是：当标识符已经被定义过(一般是用#define命令定义)，则对程序段1进行编译，否则编译程序段2。<br>其中#else部分也可以没有，即： </p>
+<pre><code><span class="id">#ifdef</span> 
+程序段<span class="number">1</span> 
+<span class="id">#denif</span> 
+</code></pre><p>　　这里的“程序段”可以是语句组，也可以是命令行。这种条件编译可以提高C源程序的通用性。如果一个C源程序在不同计算机系统上系统上运行，而不同的计算机又有一定的差异。例如，我们有一个数据类型，在Windows平台中，应该使用long类型表示，而在其他平台应该使用float表示，这样往往需要对源程序作必要的修改，这就降低了程序的通用性。可以用以下的条件编译： </p>
+<pre><code><span class="id">#ifdef</span> WINDOWS 
+<span class="hexcolor">#def</span>ine MYTYPE long 
+<span class="id">#else</span> 
+<span class="hexcolor">#def</span>ine MYTYPE <span class="attribute">float</span> 
+<span class="id">#endif</span> 
+</code></pre><p>如果在Windows上编译程序，则可以在程序的开始加上 </p>
+<pre><code><span class="hexcolor">#def</span>ine WINDOWS 
+</code></pre><p>这样则编译下面的命令行： </p>
+<pre><code><span class="hexcolor">#def</span>ine MYTYPE long 
+</code></pre><p>如果在这组条件编译命令之前曾出现以下命令行： </p>
+<pre><code><span class="hexcolor">#def</span>ine WINDOWS <span class="number">0</span> 
+</code></pre><p>则预编译后程序中的MYTYPE都用float代替。这样，源程序可以不必作任何修改就可以用于不同类型的计算机系统。当然以上介绍的只是一种简单的情况，可以根据此思路设计出其它的条件编译。<br>例如，在调试程序时，常常希望输出一些所需的信息，而在调试完成后不再输出这些信息。可以在源程序中插入以下的条件编译段： </p>
+<pre><code><span class="preprocessor">#ifdef DEBUG </span>
+print (<span class="string">"device_open(%p)\n"</span>, file); 
+<span class="preprocessor">#endif </span>
+
+如果在它的前面有以下命令行： 
+<span class="preprocessor">#define DEBUG </span>
+</code></pre><p>　　则在程序运行时输出file指针的值，以便调试分析。调试完成后只需将这个define命令行删除即可。有人可能觉得不用条件编译也可达此目的，即在调试时加一批printf语句，调试后一一将printf语句删除去。的确，这是可以的。但是，当调试时加的printf语句比较多时，修改的工作量是很大的。用条件编译，则不必一一删改printf语句，只需删除前面的一条“#define DEBUG”命令即可，这时所有的用DEBUG作标识符的条件编译段都使其中的printf语句不起作用，即起统一控制的作用，如同一个“开关”一样。<br> 有时也采用下面的形式： </p>
+<pre><code><span class="id">#ifndef</span> 标识符 
+程序段<span class="number">1</span> 
+<span class="id">#else</span> 
+程序段<span class="number">2</span> 
+<span class="id">#endif</span> 
+</code></pre><p>　　只是第一行与第一种形式不同：将“ifdef”改为“ifndef”。它的作用是：若标识符未被定义则编译程序段1，否则编译程序段2。这种形式与第一种形式的作用相反。<br>以上两种形式用法差不多，根据需要任选一种，视方便而定。<br>还有一种形式，就是#if后面的是一个表达式，而不是一个简单的标识符： </p>
+<pre><code><span class="preprocessor">#<span class="keyword">if</span> 表达式 </span>
+程序段<span class="number">1</span> 
+<span class="preprocessor">#<span class="keyword">else</span> </span>
+程序段<span class="number">2</span> 
+<span class="preprocessor">#<span class="keyword">endif</span> </span>
+</code></pre><p>　　它的作用是：当指定的表达式值为真（非零）时就编译程序段1，否则编译程序段2。可以事先给定一定条件，使程序在不同的条件下执行不同的功能。<br>例如：输入一行字母字符，根据需要设置条件编译，使之能将字母全改为大写输出，或全改为小写字母输出。 </p>
+<pre><code><span class="preprocessor">#<span class="keyword">define</span> LETTER 1 </span>
+main() 
+{ 
+<span class="keyword">char</span> str[<span class="number">20</span>]=<span class="string">"C Language"</span>,c; 
+<span class="keyword">int</span> i=<span class="number">0</span>; 
+<span class="keyword">while</span>((c=str[i])!=<span class="string">'\0'</span>){ 
+i++; 
+<span class="preprocessor">#<span class="keyword">if</span> LETTER </span>
+<span class="keyword">if</span>(c&gt;=<span class="string">'a'</span>&amp;&amp;c&lt;=<span class="string">'z'</span>) c=c-<span class="number">32</span>; 
+<span class="preprocessor">#<span class="keyword">else</span> </span>
+<span class="keyword">if</span>(c&gt;=<span class="string">'A'</span>&amp;&amp;c&lt;=<span class="string">'Z'</span>) c=c+<span class="number">32</span>; 
+<span class="preprocessor">#<span class="keyword">endif</span> </span>
+<span class="built_in">printf</span>(<span class="string">"%c"</span>,c); 
+} 
+} 
+</code></pre><p>运行结果为：C LANGUAGE</p>
+<p>　　现在先定义LETTER为1，这样在预处理条件编译命令时，由于LETTER为真（非零），则对第一个if语句进行编译，运行时使小写字母变大写。如果将程序第一行改为： </p>
+<pre><code><span class="hexcolor">#def</span>ine LETTER <span class="number">0</span> 
+</code></pre><p>则在预处理时，对第二个if语句进行编译处理，使大写字母变成小写字母（大写字母与相应的小写字母的ASCII代码差32）。此时运行情况为：<br>    c language 
+　　</p>
+<blockquote>
+<p><strong>不用条件编译命令而直接用if语句也能达到要求，用条件编译命令有什么好处呢？</strong><br>的确，此问题完全可以不用条件编译处理，但那样做目标程序长（因为所有语句都编译），而采用条件编译，可以减少被编译的语句，从而减少目标的长度。当条件编译段比较多时，目标程序长度可以大大减少。 </p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>#ifndef、#def、#endif说明<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[没事翻翻[来自网络]]]></title>
+    <link href="http://www.sweetfish1991.com/2014/07/12/%E6%B2%A1%E4%BA%8B%E7%BF%BB%E7%BF%BB.html"/>
+    <id>http://www.sweetfish1991.com/2014/07/12/没事翻翻.html</id>
+    <published>2014-07-12T13:03:24.000Z</published>
+    <updated>2015-03-30T12:14:00.276Z</updated>
+    <content type="html"><![CDATA[<p>Q&amp;A的基本功<br><a id="more"></a></p>
+<h2 id="库和头文件的关系？">库和头文件的关系？</h2><p>答：c++的库多了去了，各种库。但是一般安装编译器时把c++标准库就顺带安装了，这个基本的库一般叫做c标准库或者c++标准库。其他的库叫做扩展库（cpp_ex_libs）。库一般在目录中用lib文件夹盛放，库的头文件一般用include文件夹盛放。<br>头文件是指的源代码中在头部引入的文件。其实是引入了某个库的接口文件（头文件中一般存放一些类和声明）。只有在我们的逻辑源代码头部引入了某个库的头文件.h(一般在include文件夹内)，我们才能通过这个接口去使用该头文件所对应库(lib)的内部函数。当然，也可以引入我们自己定义的头文件。而c++标准库std中存在一些基本的库函数，那么，我们想使用这些个库函数的话，就该在我们代码的头部引入相应的接口。比如我们想用std标准库中的输入输出功能 ，那么我们就要在头部把这些功能的头文件iostream（接口）引入。这样，我们就能在代码中使用std标准库中的cout，cin等函数了。(函数名前面一般带有该函数所在库的名字空间，如cout的名字应该是他的标准库名::函数名，即std::cout; 为了简便可以在头部加上using namespace std;)</p>
+<hr>
+<h2 id="#include_的使用方法？">#include 的使用方法？</h2><p>答：#include 是一个固定格式，当需要引用另外一个头文件，其语法式就是在代码的新行处，写上：<br>#include &lt;头文件&gt;<br>或者<br>#include “头文件”<br>当然，学究一点的语法是没有中间的空格(我们并不推荐)。</p>
+<hr>
+<h2 id="“”与&lt;&gt;的区别是?">“”与&lt;&gt;的区别是?</h2><p>答：如果引用的头文件是在编译系统预先定义的目录，比如iostream就是在c++标准库中，而标准库又是在编译系统预先安装的目录中。因此就可以用&lt;&gt;，如果这个头文件在我定义的某个目录，那么就要用双引号。<br>iostream这个头文件需要加.h吗？<br>答：标准库不带扩展名，因此不加。而普通头文件一般是.h .hxx .hpp。 所以要根据扩展名来写。 .h与c语言的兼容性最好。 一般.h就是普通自定义的头文件，并不在编译系统预设的目录，所以一般用引号包含。（有待验证…）</p>
+<hr>
+<h2 id="&lt;&lt;的深层理解？">&lt;&lt;的深层理解？</h2><p>答：cout和cin代表的是标准输出和标准输入设备。在不同的机器以及不同的程序上相应的设备当然不同。而&lt;&lt;是“流输出符”，是将右边的东西输出到左边的东西上。如果左边是cout，即将右边的东西输出到标准输出设备上。</p>
+<hr>
+<h2 id="using_namespace_std;的作用？">using namespace std;的作用？</h2><p>答：为防止函数名、对象名重名。库中的关键字都有名字空间。比如iostream属于c++标准库，而整个c++标准库的名字空间就是std。因此，在使用c++标准库里的内容时，比如使用endl这个模板函数时，我们要用std::endl，这才能精确的表示是使用的c++标准库中iostream下的endl函数。而为了编码简洁，减少打字量，我们可以在头部直接写上using namespace std，来表示当前页源代码中使用这个头文件时候，使用的名字空间是std。例如：我们可以这样测试：引入iostream，把using namespace std去掉的话，cout这样的命令就无法使用了，但是如果在使用cout时改成std::cout，则程序又能运行了。（显然，如果cout很多，using namespace std就解决了你的打字烦恼）</p>
+<hr>
+<h2 id="main函数的作用？（即程序在操作系统中的执行原理）">main函数的作用？（即程序在操作系统中的执行原理）</h2><p>答：main函数是入口函数。当编译好的程序被用户打开，操作系统将其调入内存执行。然后操作系统调用入口函数（此时应该是代表入口函数的内存区域，然后开始执行该程序的一条条指令，即二进制码）</p>
+<hr>
+<h2 id="几个库的名字？">几个库的名字？</h2><p>答：stl—c++标准库（不支持多线程）；boost—一个开源的c++标准库的扩展，也叫c++准标准库；wxwidgets—gui lib，即图形界面库；</p>
+<hr>
+<h2 id="为什么g++编译器支持跨平台，却还要尽量在linux下编译呢？也即为什么要在windows下安装msys来模拟一个最小化的linux以用g++(gcc)进行进行编译呢?">为什么g++编译器支持跨平台，却还要尽量在linux下编译呢？也即为什么要在windows下安装msys来模拟一个最小化的linux以用g++(gcc)进行进行编译呢?</h2><p>答：因为跨平台，所以一般情况下，使用win平台下的g++（比如mingw）可以进行编译。但是可恶的是，有几个库的开发商却没有开发出在window平台下用g++进行编译的文件，比如xerces-c库（用于解析xml），就只能在win下用vs编译或者在linux下用g++等编译。所以我们在win下只好模拟linux才能编译xerces-c这个库。幸好mingw除了提供g++编译器，还提供了msys，小巧灵活，却能实现在win平台下模拟linux，从而完美编译所有的库（在linux平台下，不存在任何没有提供编译文件的库）。当然，除了这个曲径通幽的解决办法。<br>我们还可以在win平台下使用vc编译器，某些库的开发商在win平台下有相应的支持vc等编译器编译的文件。因此也可以这样做。<br>也由此看出，我们所用的库是需要跟编译器适应的。库也要开发不同的版本以适应某个平台下的某些编译器。</p>
+<hr>
+<h2 id="UNIX?">UNIX?</h2><p>答：六七十年代，某美国人用汇编给某机器写了个操作系统原型。第三版使用了BCPL高级语言，感觉不行，就对bcpl改良成了c语言，写成第三版内核，c语言与unix开始流行。unix流行并开源交流后，78年伯克利大学开发出BSD系列，成为一分支，同时AT&amp;T成立USG（Unix Support Group），将 Unix变成商业化的产品。从此，BSD的 Unix 便和AT&amp;T 的Unix 分庭抗礼，Unix就分为System IV和4.x BSD这两大主流，各自蓬勃发展。82年以后att这边成为商业版，bsd那边继续开发（比如tcpip协议）。后来出现法律纠纷 ，使bsd停滞或者去除了些代码。94年官司了解，bsd复兴，其开发也出现几个方向，于是出现了freebsd，openbsd，netbsd。当然，att那边也不断出现一些版本。另外，一些大公司在基于unix源码的基础上，也开发出了好多惠普，苹果，ibm等的版本。</p>
+<hr>
+<h2 id="linux？">linux？</h2><p>Linux是最受欢迎的自由电脑操作系统内核。它是一个用C语言和汇编语言写成，符合POSIX标准的类Unix操作系统。Linux最早是由芬兰黑客林纳斯.托瓦兹（Linus B. Torvalds）为尝试在英特尔x86架构上提供自由免费的类Unix操作系统而开发的。linux是模仿的unix，但源代码却不是unix，否则就有法律问题了。这也是linux完全开源免费的原因。其实linux只是一个内核，我们只是习惯上称我们见到的整个操作系统为linux，其实他是gnu/linux,即已经集成了gun及好多应用软件和库，窗口什么的。linux也有好多发行版本：</p>
+<hr>
+<h2 id="类unix？">类unix？</h2><p>是指在unix基础上或者克隆，模仿的操作系统。并不一定是完全copy的unix内核。如：GUN/Linux、Max OS X、Cygwin、MinGW-MSYS</p>
+<hr>
+<h2 id="-o文件？">.o文件？</h2><p>答：在code：：blocks中编译产生的中间文件（对象文件）是.o为扩展名，可以删除掉。没用。在win下的编译器一般产生的是.obj的扩展名。这个中间文件又叫目标文件，是用来生产最后的exe文件而出现的中间文件。</p>
+<hr>
+<h2 id="wxwidgets？">wxwidgets？</h2><p>既支持原生界面，也支持统一风格界面的图形界面函数库。开源非商业的。像微软的mfc是商业的，源代码不开放，而且仅支持win平台的图形界面。</p>
+<hr>
+<h2 id="编译，链接？">编译，链接？</h2><p>答：源代码变成可执行程序，经过编译和链接。编译将用户的源代码变成若干个目标程序/目标模块（已经是二进制bin了）。链接就是将目标程序以及他所需要的库函数连在一起形成一个完整的可执行文件。 然后当打开这个程序时由装入程序执行“装入”被装入内存，</p>
+<hr>
+<h2 id="文件一定需要扩展名吗？">文件一定需要扩展名吗？</h2><p>答：文件扩展名仅仅是为了实现在用户打开文件时帮助系统寻找恰当的解码方法，如果用户指定解码程序，即使没有扩展名该文件也能打开。所以扩展名不是必须有的。</p>
+<hr>
+<h2 id="为什么库又叫做预编译库？">为什么库又叫做预编译库？</h2><p>答：因为库都已经编译好了，我们写代码的时候直接把库的接口拿过来用，然后就可以直接使用这个库了。因此称库是预编译的。因为库本身已经编译成了二进制。只是他本身不能运行。只提供给别人引用。</p>
+<hr>
+<h2 id="开源协议？">开源协议？</h2><p>答：貌似我们使用开源东西做的产品理应开源公开，而不可保留其源代码。</p>
+<hr>
+<h2 id="xerces-c?">xerces-c?</h2><p>答：强大也庞大的xml解析库。提供验证，sax和dom api。</p>
+<hr>
+<h2 id="xsd？">xsd？</h2><p>答：是一套库和工具。作用是将xml语言描述的数据转换为c++语言描述。完成XML语言到C++的数据绑定。</p>
+<hr>
+<h2 id="iconv，iconvpp？？">iconv，iconvpp？？</h2><p>答：c++设想的locale标准库没有实现国际编码的目标。icov是一个小巧的解决字符集，编码问题。前者是c语言功能库，后者是对iconv接口进行改造封装为使用于c++的库，他依赖于iconvpp</p>
+<hr>
+<h2 id="deelx？">deelx？</h2><p>答：一个特别轻便的正则表达式解析引擎。仅提供正则表达式处理。事实上，该库仅仅是一个头文件。</p>
+<hr>
+<h2 id="gsoap？？">gsoap？？</h2><p>答：gSOAP是一套辅助使用C++开发Web Service的工具。</p>
+<hr>
+<h2 id="SDL？？">SDL？？</h2><p>答：SDL全称“Simple DirectMedia Layer”。是一个跨平台的多媒体程序开发库，支持直接访问音频设备、键盘、鼠标、游戏杆、3D硬件（通过OpenGL）、2D视频缓冲等。</p>
+<hr>
+<h2 id="编码和字符集？">编码和字符集？</h2><p>答：编码是生活中的字符在计算机中用哪些数值来表示；字符集是一串计算机内的数值表示的是汉字还是英文还是其他字符。某个文件（甚至是网页文件），他本身采用哪种编码方式，就代表了我们在其中输入的文字以哪种形式进行编码。比如如果是gbk编码，我们写的汉字就按照gbk的规则转换为计算机数值。当我们显示这个文件的时候，也应该用gbk解码，否则如果用utf-8的话，该文件内部的数值被解码后就是乱码。由于中文系统的window都控制台使用gbk编码，因此我们编程代码编写时若有汉字则必须用gbk编码写，这样的话那些汉字所对应的字符集才能编译成能被你系统控制台认识的字符。 gbk的字符集包括2万多汉字和西方字符。如果我们的程序中使用韩文，日文，那么gbk无能为力，我们只好使用utf-8这个比较国际的字符集，他包括了简体中文，繁体中文，以及一些其他国家的字符集。 但是 有一点，用gbk编码的简体汉字能被utf-8正确解码吗，答案是不能的，虽然都是汉字，但是utf-8和gbk表示同一个汉字的字符集是不一样的，utf-8表示同一个汉字的数值比gbk的数值要大很多。因此，如果我们解码的系统是用gbk解码（比如中文版的windows），那么我们编程就要用gbk编，如果解码的操作系统（或者说运行程序的控制台）是用utf-8解码（比如linux系统），那么我们编程时就要在把ide编辑器将文档编码调整为utf-8，一般ide都支持好几种编码字符集。</p>
+<hr>
+<h2 id="在win平台下控制台exe打开后一闪而过？">在win平台下控制台exe打开后一闪而过？</h2><p>答：1 在最后加一句cin.get();等待输入的函数。2 引入头文件stdlib.h，后在程序末尾加system(“pause”); 3 在cmd中用cd命令进目录执行该程序。</p>
+<hr>
+<h2 id="const关键字？？">const关键字？？</h2><p>答：使用const关键字来表示const所声明的变量为限定常量，不可能被修改。声明一个类的实例时，表示该实例不会对类的成员函数造成写操作。</p>
+<hr>
+<h2 id="屏幕输入与文件编码无关？">屏幕输入与文件编码无关？</h2><p>答：因为屏幕上cin的输入是用该屏幕使用的编码方式进行编码，编码成他使用的字符集，然后以二进制形式存入内存中声明的用于存放这个输入字符的变量中。因此，当内存中这块变量再被我们使用的这个程序转换为该程序的显示输出cout流时，也采用了相同的解码方式，即将内存中的二进制提取转换为该程序使用的字符集，然后用该字符集解码为屏幕上输出的内容。</p>
+<hr>
+<h2 id="int_main()的返回值？">int main()的返回值？</h2><p>答：每个程序有且只有一个main函数，且操作系统首先从main函数开始调用， 他的返回值必须是int型，main的返回值代表了状态指示器，一般函数体最后返回0，返回0代表程序执行完毕，<br>任何非零一般都代表有错误，当然这根据不同的操作系统定义不同而不同。</p>
+<hr>
+<h2 id="编译程序必须使用ide吗？">编译程序必须使用ide吗？</h2><p>答：no。ide只是一个将编译器、编辑器等功能集合在一起的集成开发环境。如果你不想去学习一个ide，而想直接编译你的代码（可以是在记事本中写的），那么我们可以在系统中安装一个编译器（gnu的或者微软的），比如我安装的mingw32的c++编译器，一般安装完编译器以后要把这个编译器的bin和lib(标准库)加入系统变量(为了在命令行中可以直接输入命令调用)。安装完了编译器，我们就可以对我们写代码进行编译了。cmd中首先进入源代码所在的目录，输入命令：g++ 文件名.扩展名 -o 结果文件名 。 如果不加-o 和结果文件名，则会生成文件名为a的可执行文件。</p>
+<hr>
+<h2 id="输入输出操作符的返回值？">输入输出操作符的返回值？</h2><p>cout&lt;&lt;会把右侧的值输出到设备cout(标准输出设备)上。cin&gt;&gt;会把左侧设备上输入的值输到右侧变量身上。每个输入或输出操作完成后，其返回的结果是这个输入或者输出设备本身。也就是，如果cout右侧的内容输出到cout以后，则接着返回cout，因此，我们可以在一个操作符后面接着写下一个内容，而不必重复写这个cout。例如：cout&lt;&lt;a&lt;&lt;b;则，输入完a以后，返回一个cout，后面的代码变成了cout&lt;&lt;b;所以没有逻辑错误。cin同理。</p>
+<hr>
+<h2 id="c++常用扩展名，看到后别不知道？">c++常用扩展名，看到后别不知道？</h2><p>答：.c .cpp .cp .cxx .cc</p>
+<hr>
+<h2 id="控制台中的程序如何强制退出？">控制台中的程序如何强制退出？</h2><p>答：ctrl+c。对付死循环。有时候我们为了防止控制台的程序看不到结果而自动退出，我们需要写个while(1),这样的死循环来持续的看到控制台结果，因此我们需要用到ctrl+c来使我们的程序退出。</p>
+<hr>
+<h2 id="创建自定义类型的时候，花括号后面也要加分号？">创建自定义类型的时候，花括号后面也要加分号？</h2><p>答：是要加的。即使这不算是一句代码的结束。</p>
+<hr>
+<h2 id="c++中对象的生死过程是？">c++中对象的生死过程是？</h2><p>答：c++中自定义的对象通过函数表达本身的生成和消亡。又叫构造函数和析构函数。如果我们自己不定义这俩函数，编译器会自动添加，默不作声。构造函数没有类型，没有返回值。在对象定义，即对象出生时，该对象的构造函数自动被执行；析构函数是在对象死亡时执行的函数，同样没有类型没有返回值。</p>
+<hr>
+<h2 id="c++中对象的生命周期？">c++中对象的生命周期？</h2><p>答：全局对象(即在最外面声明定义的对象)，在程序创建时创建，程序结束时死亡。 局部对象(即在可执行的语句块中定义的对象)是在语句结束的时候死亡。且先生后死（即先创建的对象后死亡）。当然，如果我们在代码中自定义对象的死亡，则另当别论，这属于意外死亡。 举个例子：我们struct object{}定义了一个结构体(对象的母亲)，然后我们在main函数中开始创建这个对象(假设main函数中仅有这么一句代码),object mylaopo; 这样便创建了mylaopo这么一个对象，mylaopo这个对象的规则由struct object来定义，当然，其构造和析构函数也由struct来定义，当我们编译完成，运行这个程序，当程序执行到object mylaopo这一句的时候，便创建了mylaopo对象，与此同时，定义的构造函数也被执行(不信你可以在struct里面写一个无类型无返回值的函数试试)，当main函数执行完毕，mylaopo所在的语句块执行完毕，自然该对象到了灭亡的时刻，于是struct中定义的析构函数被执行。</p>
+<hr>
+<h2 id="在使用wxwidgets进行gui布局时需要明白expand和proportion的含义？">在使用wxwidgets进行gui布局时需要明白expand和proportion的含义？</h2><p>答：</p>
+<hr>
+<h2 id="struct定义时关于分号？">struct定义时关于分号？</h2><p>答：定义一个struct时，右花括号之后跟着一个分号(;)。其他代码一般在每句话后面跟一个分号，而最后花括号后面的分号不用加。</p>
+<hr>
+<h2 id="内存世界分为堆数据段，栈数据段，唉，先不管了，慢慢理解?">内存世界分为堆数据段，栈数据段，唉，先不管了，慢慢理解?</h2><p>答：</p>
+<hr>
+<h2 id="delete在销毁堆内存时的作用？">delete在销毁堆内存时的作用？</h2><p>答：delete是把声明过的堆对象给销毁。释放。 那么delete后面要跟一个栈变量的名字，也就是声明这个堆变量时候给堆对象起的指针变量名。该变量名是一个栈变量，delete销毁堆对象的时候要知道这个栈变量名(确保栈变量存在),然后根据栈变量中存的地址去堆内存中找到堆对象的地址区域，然后delete（销毁）掉。</p>
+<hr>
+<h2 id="自定义类型的写法风格？">自定义类型的写法风格？</h2><p>答：把构造与析构函数放在类型定义中最前面，其它成员函数放在中间，成员数据放最后面，这是当今C++界比较流行的风格噢。</p>
+<hr>
+<h2 id="栈对象声明的先后次序在内存中的规律？">栈对象声明的先后次序在内存中的规律？</h2><p>答：我们通过取地址可以发现，作为栈变量，先声明的比后声明的，他的内存地址次序要靠后。比如先声明的内存地址为0X22ff0c，那么后声明的则可能是0X22ff08(一个稍微靠前的内存地址)。 对于栈对象的死亡顺序是先声明的后死亡，因为是在栈中。最终看到的效果应该是：构造函数按照声明顺序出现，而析构函数则是按照声明顺序的反向顺序执行。</p>
+<hr>
+<h2 id="定义派生类的时候应该怎样设计？">定义派生类的时候应该怎样设计？</h2><p>答：不能违反伦理。也就是说派生类，一定是属于他的派生自的类的（即他的父类）。比如人是个大类，说人他不一定是美人，但是他的派生类美人一定是人。</p>
+<hr>
+<h2 id="如果派生类中和父类中都定义了构造和析构函数，那么定义一个派生类的实例时，被执行的是哪个构造函数呢？">如果派生类中和父类中都定义了构造和析构函数，那么定义一个派生类的实例时，被执行的是哪个构造函数呢？</h2><p>答：实例化一个派生类，则其父类和该派生类自己的构造函数同时都会发作（运作，运行，执行）。如果只实例化父类，那么只执行父类里面的构造函数。还有一点，实例化该派生类的时候，父类里面的构造函数先执行，派生类里面的构造函数后执行；实例死亡的时候，派生类里面的构造函数先执行，父类里面的构造函数再死亡。<br>还有更复杂的一点，如果该派生类是通过先声明基类堆变量，然后new成派生类的话，则要看基类中的析构函数是不是虚的，是虚的则调用派生类的析构函数，不是虚的，则调用基类的析构函数。</p>
+<hr>
+<h2 id="创建一个派生类其实有两种办法？">创建一个派生类其实有两种办法？</h2><p>答：是的。第一种，基于“派生类”创建。即最基本的创建方法，派生类名 someon或者派生类名 *someone=new 派生类的构造函数。 第二种，基于“基类”创建。即先用基类声明一个堆变量，然后堆变量在赋值的时候不是new 基类构造函数，而是new派生类构造函数。 语法例子：首先person *someone；someone=new beauty()；<br>传统的实例化基类的语法是：person *someone；someone=new person()； 我们可以比较一下二者，发现其中本质的东西。也就是第一种方法产生的这个堆变量是beauty类型，第二种方法产生的这个变量也是beauty派生类类型。但是出身不一样。一个来自本派生类，一个来自基类。这样就导致，当我们使用第二种方法的实例去调用该对象变量内的函数时，会调用基类的还是会调用派生类的？(当然，前提是基类和派生类的俩函数类型一样，参数次序及类型一样，名称一样，返回值一样，否则调用的时候就能分辨出来了。)<br>因此，牵扯出虚函数。。只要我们给基类的函数加上virtual，则他本身以及其派生类的该函数都成为虚函数，虚函数特点就是：当某个实例调用某个函数时，就看是这个实例是被创建成了什么类型，是派生类的类型，那么就调用派生类里面的函数。是基类类型那就调用基类里的同名函数。 还有一点要注意：如果实例消亡的时候调用的是派生类里的析构函数，那么同时也会调用基类的析构函数，正如上文中年刚刚提到的。</p>
+<hr>
+<h2 id="cin也是一个对象，他也是有成员函数的？">cin也是一个对象，他也是有成员函数的？</h2><p>答：是的，而且貌似是栈对象。比如cin.fail(),以及cin.clear();</p>
+<hr>
+<h2 id="cin与getline(,)的区别？">cin与getline(,)的区别？</h2><p>答：cin遇到空格或回车就认为结束。而getline可以将完整的输入读进来。</p>
+<hr>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Q&amp;A的基本功<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[C/C++语言实现动态数组[转]]]></title>
+    <link href="http://www.sweetfish1991.com/2014/07/11/CC++%E8%AF%AD%E8%A8%80%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84.html"/>
+    <id>http://www.sweetfish1991.com/2014/07/11/CC++语言实现动态数组.html</id>
+    <published>2014-07-11T13:03:24.000Z</published>
+    <updated>2015-03-30T12:16:51.758Z</updated>
+    <content type="html"><![CDATA[<p>C/C++语言实现动态数组<br><a id="more"></a></p>
+<p>转载地址：<a href="http://blog.csdn.net/sparkliang/article/details/5359634" target="_blank" rel="external">http://blog.csdn.net/sparkliang/article/details/5359634</a></p>
+<hr>
+<h2 id="C数组的小问题">C数组的小问题</h2><p>　　这里说的动态数组是可以根据需要动态增长占用内存的数组，比如程序初始分配了100个元素，可是运行了一段时间后区区100个空间不能满足了，现在需要400个，怎么办呢；那肯定需要再额外分配300个。</p>
+<p>　　C语言有realloc()函数来解决空间扩充的问题，但是不要忘了realloc可能会迁移内存，很多时候数组中的元素会被其它函数/模块引用，如果地址发生了变化，结果将是灾难性的。STL的vector也有相同的问题。</p>
+<p>　　一次分配足够的空间是可以解决这个问题，很明显这会造成内存的浪费，这个做法不算明智。不使用数组呢？使用list能解决一部分问题，但是list不能支持随机访问啊，鉴于效率上的硬伤，显然不能随便用list替换数组。</p>
+<p>　　怎么解决这个问题呢？<br>　　动态数组！在HPServer 的Demutex Table就用到了动态数组，事实证明效果不错。</p>
+<h2 id="动态数组的特征">动态数组的特征</h2><p>动态数组是一个很简单易用的数据结构，但是简单不代表优点小，它的特征如下：</p>
+<ul>
+<li>根据需要动态批量增长内存；</li>
+<li>一经分配，元素地址不会再次变化；</li>
+<li>实现简单，效率高，事实上它和普通数组相比基本没有效率损失；</li>
+<li>最大个数固定； </li>
+</ul>
+<p>　　其实最重要的就是特征2了，不然直接使用realloc多方便呢，当然动态数组的实现也很方便，下面就会详细说说。<br>特征4实际上是个限制，但是相信我，你的程序不可能达到这个最大值。</p>
+<h2 id="动态数组的实现">动态数组的实现</h2><p>如上面所说的，动态数组实现起来很简单，以下都假设数组元素类型是T，首先需要一个辅助数据结构。<br><figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ARRAY_ELE_S</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">	T item_array[<span class="number">1024</span>];  </span><br><span class="line">&#125;;  </span><br><span class="line">ARRAY_ELE_S *pArray[<span class="number">2048</span>];  </span><br><span class="line">int iSize;</span><br></pre></td></tr></table></figure></p>
+<p>变量pArray是一个ARRAY_ELE_S类型的指针数组，这个也就是你的动态数组了；iSize记录了当前数组的大小。</p>
+<p>上面的代码表明：</p>
+<ul>
+<li>数组每次动态增长1024个元素；</li>
+<li>数组的最大元素个数可以到：2000*1024个，如果这个还不够，你可以把这个值改的更大点。</li>
+</ul>
+<p>　　先来看看内存占用，pArray本身占用2000*4，大约是8K的内存，基本可以忽略了。<br>如果一次分配一个2000*1024的数组array[2000*1024]，那么一次就要分配的内存是：2*sizeof(T) M，空间浪费严重。</p>
+<p>　　再来看看效率，下面就从数组最主要的操作——随机访问来看看它的效率如何；接下来再看看它是如何根据需要动态增长的。</p>
+<h2 id="随机访问">随机访问</h2><p>　　访问指定的索引位置上的数组元素，这个需要两步计算，首先定位到元素在哪个子数组上，然后再定位到子数组的元素上；其实很简单。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T *<span class="keyword">get</span>(<span class="keyword">int</span> idx)  </span><br><span class="line">&#123;  </span><br><span class="line">	<span class="comment">// 确保索引有效  </span></span><br><span class="line">	<span class="keyword">if</span>((idx&gt;=<span class="number">0</span>) &amp;&amp; (idx&lt;iSize))  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="keyword">int</span> idx_maj = idx/<span class="number">1024</span>; <span class="comment">// 主索引  </span></span><br><span class="line">	    <span class="keyword">int</span> idx_mor = idx - (idx_maj) * <span class="number">1024</span>; <span class="comment">// 次索引  </span></span><br><span class="line">	    <span class="keyword">return</span> (&amp;(pArray[idx_maj]-&gt;item_array[idx_mor]));  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="keyword">return</span> NULL;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="动态增长">动态增长</h2><p>　　如果当前空间不够，需要动态增长数组，不然怎么叫动态呢，基本思想就是如果需要的size超过当前的数组大小，就需要增长数组，直到能够容纳size个元素，代码如下所示。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">reclac</span><span class="params">(<span class="keyword">int</span> size)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span>(size &gt;= <span class="number">1024</span>*<span class="number">2048</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 太大了  </span></span><br><span class="line">    <span class="keyword">while</span>(iSize &lt;= size)  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="comment">// 分配内存，并初始化为0  </span></span><br><span class="line">        <span class="keyword">int</span> idx = iSize/<span class="number">1024</span>;  </span><br><span class="line">	    pArray[idx] = (ARRAY_ELE_S*)<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(ARRAY_ELE_S));  </span><br><span class="line">        <span class="keyword">if</span>(pArray[idx] == NULL)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">return</span> (-<span class="number">1</span>);  </span><br><span class="line">	        &#125;  </span><br><span class="line">	        iSize += <span class="number">1024</span>;  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>　　从上面的代码可以看出来，动态数组的优势非常明显，一旦分配，就不再需要修改动态数组的地址，处理非常方便，这修复了vector的一个重大缺陷，就是vector有可能会修改地址，如果vector由于空间不够，动态扩充空间后，导致修改原来的地址，这样会造成程序出现重大错误。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>C/C++语言实现动态数组<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[指向数组指针的下标]]></title>
+    <link href="http://www.sweetfish1991.com/2014/07/09/%E6%8C%87%E5%90%91%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E7%9A%84%E4%B8%8B%E6%A0%87.html"/>
+    <id>http://www.sweetfish1991.com/2014/07/09/指向数组指针的下标.html</id>
+    <published>2014-07-09T13:02:45.000Z</published>
+    <updated>2015-03-30T12:17:35.772Z</updated>
+    <content type="html"><![CDATA[<p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)<br><a id="more"></a></p>
+<h2 id="1-指向数组指针的下标">1.指向数组指针的下标</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p=&amp;a[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+<p>则有<code>p[1]</code>等同于<code>p+1</code>, <code>a[2]</code><br><code>p[-1]</code>等同于<code>p-1</code>, <code>a[0]</code></p>
+<hr>
+<h2 id="2-指针与引用互换">2.指针与引用互换</h2><p>引用—&gt;指针<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> point;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = point;</span><br><span class="line"><span class="type">int</span> *cp = &amp;<span class="keyword">ref</span>;</span><br></pre></td></tr></table></figure></p>
+<p>指针—&gt;引用<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *cp;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = *p;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="3-关于除法取整和不取整——取余">3.关于除法取整和不取整——取余</h2><p>除运算除了使用反余杠<code>/</code>表示以外，很重要的一点是别忘了，对于整数类型，或字符类型的数据进行除运算时，小数部分将被截掉，因为整型类型的数据不能保存小数部分，如：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>得到结果：a 等于 2，而不是 2.5。<br>注意：可能大家会以为，之所以 5 /2 结果是 2,是因为我们让一个整型变量 a 等于它，其实原因并不是因为 a 是<br>int 类型，请看：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>虽然 a 现在被声明为实型，但执行这句程序，ａ的值仍然是 2。事实上，精度丢失是在计算机计算 5/2<br>时就发生了。所以，准确的写法是：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2.0</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>也就是说，只有除数或被除数至少需要有一个是明确指定为实型，除运算才能得到小数部分。这里我们也更明确类似于 5 和 5.0 在计算机中的区别：虽然数值大小一样，但加了 5.0 被当成实型数对待，而 5 则被当成整型数。</p>
+<p>在 C 和 C++里， <code>%</code> 进行求余数运算，求余数也称<code>求模</code>，以下是求余操作的例子：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> % <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>结果是，a 等于 1,即：5 除以2，余数为1。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[指向const的对象的指针和const指针]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/22/%E6%8C%87%E5%90%91const%E7%9A%84%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%8C%87%E9%92%88%E5%92%8Cconst%E6%8C%87%E9%92%88.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/22/指向const的对象的指针和const指针.html</id>
+    <published>2014-01-22T13:02:17.000Z</published>
+    <updated>2015-03-30T12:18:50.319Z</updated>
+    <content type="html"><![CDATA[<p>指向const对象的指针和const指针<br><a id="more"></a></p>
+<p><em>简单描述：</em><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> me；</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> * p1=&amp;me；<span class="comment">//p1可变，*p1不可变，此时不能用*p1来修改，但是p1可以转向 </span></span><br><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p2=&amp;me；<span class="comment">//p2不可变，*p2可变，此时允许*p2来修改其值，但是p2不能转向。</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p3=&amp;me；<span class="comment">//p3不可变，*p3也不可变，此时既不能用*p3来修改其值，也不能转向</span></span><br></pre></td></tr></table></figure></p>
+<p>　　如果const位于星号的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；如果const位于星号的右侧，const就是修饰指针本身，即指针本身是常量<br>还有：<code>int const *p</code><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> * <span class="keyword">const</span> p</span><br></pre></td></tr></table></figure></p>
+<h2 id="一、指向const的指针">一、指向const的指针</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp；</span><br></pre></td></tr></table></figure>
+<p>◎这里cp是一个指向double类型const对象的指针，const限定了cp指针所指向的对象类型，而非cp本身。cp本身不是const。<br>◎定义时不需要对它进行初始化，如果需要的话，允许给cp重新赋值，使其指向另一个const对象。<br>◎不能通过cp修改其所指对象的值：错  *cp=42;<br>◎不能把一个const对象的地址赋值给一个普通、非const对象的指针：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">double</span> *ptr=&amp;pi;   	<span class="comment">//错</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp=&amp;pi;   <span class="comment">//对</span></span><br></pre></td></tr></table></figure></p>
+<p>◎允许把非const对象的地址赋值给指向const对象的指针：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> dval=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cp;</span><br><span class="line">cp= &amp;dval; 	 <span class="comment">//对</span></span><br></pre></td></tr></table></figure></p>
+<p>◎由上知，指向const的指针所指的对象并非const，此时可通过其他方法修改所指的对象：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">dval=</span><span class="number">3.14</span>;</span><br><span class="line">*<span class="variable">cp=</span><span class="number">3.14</span>;  错</span><br><span class="line"><span class="variable">cp=</span> &amp;dval;</span><br><span class="line">double *<span class="variable">ptr=</span> &amp;dval;</span><br><span class="line">*<span class="variable">ptr=</span> <span class="number">2.72</span>;      //修改了<span class="variable">dval=</span><span class="number">2.72</span></span><br><span class="line">cout&lt;&lt; *cp;     //dval的值被修改了，print <span class="number">2.72</span></span><br></pre></td></tr></table></figure>
+<p>◎const指针可以接受const和非const地址，但是非const指针只能接受非const地址。所以const指针的能力更强一些，所以尽量多用const指针，这是一种习惯。</p>
+<h2 id="二、const指针">二、const指针</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">int</span> <span class="built_in">num</span>=<span class="number">0</span>；</span><br><span class="line"><span class="built_in">int</span> <span class="keyword">const</span> *cp= <span class="built_in">num</span>;    <span class="comment">//定义&amp;初始化</span></span><br></pre></td></tr></table></figure>
+<p>◎cp是指向int型对象的const指针，指针的值不能修改，意味着不能使cp指向其他对象。任何给const指针赋值的行为都是错的。<br>◎const指针必须在定义时初始化。<br>◎const指针cp不可操作，但是[*cp]可以操作，修改所指向对象的值: </p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">*<span class="variable">cp=</span><span class="number">1</span>;     //<span class="variable">num=</span><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="三、指向const对象的const指针">三、指向const对象的const指针</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> <span class="keyword">const</span> *cp= &amp;pi;</span><br></pre></td></tr></table></figure>
+<p>◎cp首先是一个const指针，指向double类型的const对象。<br>◎即不可修改cp所指对象的值，也不可修改该指针的指向（即cp中存放的地址）。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>指向const对象的指针和const指针<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[函数指针和指针函数]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/22/%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%87%BD%E6%95%B0.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/22/函数指针和指针函数.html</id>
+    <published>2014-01-22T07:43:27.000Z</published>
+    <updated>2015-03-16T14:46:17.478Z</updated>
+    <content type="html"><![CDATA[<p>函数指针和指针函数<br><a id="more"></a></p>
+<h1 id="1-_区别">1. 区别</h1><p>　　函数指针是一个指向函数的指针，是一个指针变量；“函数指针”本身首先应是指针变量，只不过该指针变量指向函数，C在编译时，每一个函数都有一个入口地址，该入口地址就是函数指针所指向的地址。有了指向函数的指针变量后，可用该指针变量调用函数，就如同用指针变量可引用其他类型变量一样，在这些概念上一致的。函数指针有两个用途：调用函数和做函数的参数。<br>　　指针函数是一个函数，函数的返回值是一个指针。</p>
+<hr>
+<h1 id="2-_函数指针">2. 函数指针</h1><p><strong>声明</strong>：<br>　　<code>函数类型</code> <code>(标志符指针变量名)</code> <code>(形参列表);</code><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> x)</span></span>;         <span class="comment">/* 声明一个函数 */</span></span><br><span class="line"><span class="keyword">void</span> (*f) (<span class="keyword">int</span> x);       <span class="comment">/* 声明一个函数指针 */</span></span><br><span class="line">f=func;                  <span class="comment">/* 将func函数的首地址赋给指针f */</span></span><br></pre></td></tr></table></figure></p>
+<p>　　赋值时函数<code>func</code>不带括号，也不带参数，由于<code>func</code>代表函数的首地址，因此经过赋值以后，指针f就指向函数<code>func(x)</code>的代码的首地址。</p>
+<p>　　下面的程序说明了函数指针调用函数的方法：<br>例一：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123; <span class="keyword">return</span>(x&gt;y?x:y); &#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">　　<span class="keyword">int</span> (*ptr)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br><span class="line">　　<span class="keyword">int</span> a,b,c;</span><br><span class="line">　　ptr=max;</span><br><span class="line">　　<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a,&amp;b);</span><br><span class="line">　　c=(*ptr)(a,b);</span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">"a=%d,b=%d,max=%d"</span>,a,b,c);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　<code>ptr</code>是指向函数的指针变量，所以可把函数<code>max()</code>赋给<code>ptr</code>作为<code>ptr</code>的值，即把<code>max()</code>的入口地址赋给<code>ptr</code>,以后就可以用<code>ptr</code>来调用该函数，实际上<code>ptr</code>和<code>max</code>都指向同一个入口地址，不同就是<code>ptr</code>是一个指针变量，不像函数名称那样是死的，<code>ptr</code>可以指向任何函数，就看你想怎么做了。在程序中把哪个函数的地址赋给它，它就指向哪个函数。而后用指针变量调用它，因此可以先后指向不同的函数。不过注意，指向函数的指针变量没有<code>++</code>和<code>--</code>运算，用时要小心。<br>　　不过，在某些编译器中这是不能通过的。这个例子的补充如下。</p>
+<p>应该是这样的：</p>
+<ol>
+<li>定义函数指针类型：<br><code>typedef int (*fun_ptr)(int,int);</code></li>
+<li>声明变量，赋值：<br><code>fun_ptr max_func=max;</code></li>
+</ol>
+<p>　　也就是说，赋给函数指针的函数应该和函数指针所指的函数原型是一致的。<br>例二：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">FileFunc</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">"FileFunc\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">EditFunc</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">　　<span class="built_in">printf</span>(<span class="string">"EditFunc\n"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">　　<span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*funcp)</span><span class="params">()</span></span>;</span><br><span class="line">　　funcp pfun= FileFunc;</span><br><span class="line">　　pfun();                     <span class="comment">//输出：FileFunc</span></span><br><span class="line">　　pfun = EditFunc; </span><br><span class="line">　　pfun();                     <span class="comment">//输出：EditFunc</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="3-_指针函数">3. 指针函数</h1><p><strong>定义格式：</strong><br>　　<code>返回类型</code> <code>标识符*函数名称（形式参数表）</code> <code>{函数体}</code></p>
+<p>　　返回类型可以是任何基本类型和复合类型。返回指针的函数的用途十分广泛。事实上，每一个函数，即使它不带有返回某种类型的指针，它本身都有一个入口地址，该地址相当于一个指针。比如函数返回一个整型值，实际上也相当于返回一个指针变量的值，不过这时的变量是函数本身而已，而整个函数相当于一个“变量”。例如下面一个返回指针函数的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;iostream&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">　　<span class="keyword">float</span> *find(<span class="keyword">float</span> (*p)[<span class="number">4</span>],<span class="keyword">int</span> m);    <span class="comment">//查询序号为m的学生的四门课程的成绩</span></span><br><span class="line">　　<span class="keyword">float</span> score[][<span class="number">4</span>]=&#123; &#123;<span class="number">50</span>,<span class="number">51</span>,<span class="number">52</span>,<span class="number">55</span>&#125;,&#123;<span class="number">70</span>,<span class="number">70</span>,<span class="number">40</span>,<span class="number">80</span>&#125;,&#123;<span class="number">77</span>,<span class="number">99</span>,<span class="number">88</span>,<span class="number">67</span>&#125; &#125;;    <span class="comment">//定义成绩数组，第一维可以为变量</span></span><br><span class="line">　　<span class="keyword">float</span> *pf=NULL;    <span class="comment">//定义一个指针时一定要初始化</span></span><br><span class="line">　　<span class="keyword">int</span> i,m;</span><br><span class="line">　　<span class="built_in">cout</span>&lt;&lt;<span class="string">"请输入您想查询的学生的序号:"</span>;</span><br><span class="line">　　<span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">　　pf=find(score,m);    <span class="comment">//返回为一维数组指针，指向一个学生成绩</span></span><br><span class="line">　　<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">　　      <span class="built_in">cout</span>&lt;&lt;*(pf+i)&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">　　<span class="built_in">cout</span>&lt;&lt;endl;</span><br><span class="line">　　<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> *find(<span class="keyword">float</span> (*p)[<span class="number">4</span>],<span class="keyword">int</span> m)</span><br><span class="line">&#123;</span><br><span class="line">　　<span class="keyword">float</span> *pf=NULL;</span><br><span class="line">　　pf=*(p+m);    <span class="comment">//p是指向二维数组的指针，加*取一维数组的指针</span></span><br><span class="line">　　<span class="keyword">return</span> pf;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　学生学号从<code>0</code>号算起，函数<code>find()</code>被定义为指针函数，其形参<code>pointer</code>是指针指向包含<code>4</code>个元素的一维数组的指针变量。<code>pointer+1</code>指向 <code>score</code>的第一行。<code>*(pointer+1)</code>指向第一行的第<code>0</code>个元素。<code>pf</code>是一个指针变量，它指向浮点型变量。<code>main()</code>函数中调用<code>find()</code>函数，将<code>score</code>数组的首地址传给<code>pointer</code>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>函数指针和指针函数<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[向上取整和向下取整]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/17/%E5%90%91%E4%B8%8A%E5%8F%96%E6%95%B4%E5%92%8C%E5%90%91%E4%B8%8B%E5%8F%96%E6%95%B4.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/17/向上取整和向下取整.html</id>
+    <published>2014-01-17T01:58:35.000Z</published>
+    <updated>2015-03-30T11:25:52.490Z</updated>
+    <content type="html"><![CDATA[<p>向上取整和向下取整<br><a id="more"></a></p>
+<p>　　向下取整的运算称为floor，用数学符号⌊⌋表示；向上取整的运算称为ceiling，用数学符号⌈⌉表示，在math.h头文件里。例如：</p>
+<figure class="highlight fix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">⌊59/60⌋ </span>=<span class="string"> 0</span><br><span class="line">⌈59/60⌉ = 1</span><br><span class="line">⌊-59/60⌋ = -1</span><br><span class="line">⌈-59/60⌉ = 0</span></span><br></pre></td></tr></table></figure>
+<p>　　在C语言中整数除法取的既不是Floor也不是Ceiling，无论操作数是正是负总是把小数部分截掉，在数轴上向零的方向取整（Truncate toward Zero），或者说当操作数为正的时候相当于Floor，当操作数为负的时候相当于Ceiling。</p>
+<blockquote>
+<p><strong>习题</strong><br>　　假设变量x和n是两个正整数，我们知道x/n这个表达式的结果要取Floor，例如x是17，n是4，则结果是4。如果希望结果取Ceiling应该怎么写表达式呢？例如x是17，n是4，则结果是5；x是16，n是4，则结果是4。</p>
+</blockquote>
+<p>习题的大意是如果X除N能除断，则结果为余数，如果X不能除断，则结果为余数加1。</p>
+<h2 id="INT函数">INT函数</h2><p>　　将数字向下舍入到最接近的整数，即取不大于自变量的最大整数，<br>例如：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[<span class="number">6.4</span>]=<span class="number">6</span> </span><br><span class="line"><span class="keyword">int</span>[-<span class="number">9.7</span>]= -<span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="语法">语法</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INT（<span class="built_in">number</span>）</span><br><span class="line"><span class="built_in">Number</span> 需要进行向下舍入取整的实数。</span><br></pre></td></tr></table></figure>
+<p>示例<br>　　如果将示例复制到空白工作表中，可能会更易于理解该示例。 　</p>
+<table>
+<thead>
+<tr>
+<th>公式</th>
+<th style="text-align:left">说明（结果）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>=INT(8.9)</td>
+<td style="text-align:left">将8.9向下舍入到最接近的整数(8)</td>
+</tr>
+<tr>
+<td>=INT(-8.9)</td>
+<td style="text-align:left">将-8.9向下舍入到最接近的整数(-9)</td>
+</tr>
+<tr>
+<td>=A2-INT(A2)</td>
+<td style="text-align:left">返回单元格A2中正实数的小数部分(0.5)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="类型标识符">类型标识符</h3><p>　　C/C++编程语言中，int表示整型变量，是一种数据类型，用于定义一个整型变量，在不同编译环境有不同的大小，不同编译运行环境大小不同，在但是 32/64位系统中都是32位，范围为-2147483648~+2147483647，无符号情况下表示为0~4294967295。</p>
+<p>网上搜索到结果为如下：<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>、</span><br><span class="line"><span class="keyword">if</span>((x%n)&gt;<span class="number">0</span>)&#123;<span class="literal">result</span> =x/n+<span class="number">1</span>;&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;<span class="literal">result</span>=x/n;&#125;</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>、</span><br><span class="line">(x+n-<span class="number">1</span>)/n);</span><br><span class="line"></span><br><span class="line"><span class="number">3</span>、</span><br><span class="line">(<span class="type">int</span>)(((<span class="type">float</span>)x/(<span class="type">float</span>)n)+<span class="number">0</span>.<span class="number">9</span>))</span><br></pre></td></tr></table></figure></p>
+<p>下面给出证明：</p>
+<ol>
+<li>设x=kn，k为整数，即x为n的整数倍。则（x+n-1）/n=(kn+n-1)/n=((k+1)n-1)/n，此时分子没有达到n的k+1倍,但大于等于n的k倍， 默认计算取下整则为k。符合要求。 </li>
+<li>设x=kn+m，k为整数，m为整数且0&lt;m&lt;n。则（x+n-1)/n=(kn+m+n-1)/n=((k+1)n+m-1)/n。此时分子的大于等于(k+1)n,小于(k+2)n， 按照默认计算应该为k+1。符合要求。 </li>
+</ol>
+<p>向上取整和向下取整的代码实例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;math.h&gt; </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt; </span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">( <span class="keyword">void</span> )</span> </span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> y; </span><br><span class="line">    y = <span class="built_in">floor</span>( <span class="number">2.8</span> );</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"The floor of 2.8 is %f\n"</span>, y ); </span><br><span class="line">y = <span class="built_in">floor</span>( -<span class="number">2.8</span> ); </span><br><span class="line"><span class="built_in">printf</span>( <span class="string">"The floor of -2.8 is %f\n"</span>, y ); </span><br><span class="line">    y = <span class="built_in">ceil</span>( <span class="number">2.8</span> );</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"The ceil of 2.8 is %f\n"</span>, y );</span><br><span class="line">    y = <span class="built_in">ceil</span>( -<span class="number">2.8</span> );</span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"The ceil of -2.8 is %f\n"</span>, y ); </span><br><span class="line">&#125; </span><br><span class="line">-------------------------------------------------------------</span><br><span class="line">Output </span><br><span class="line">The <span class="built_in">floor</span> of <span class="number">2.8</span> is <span class="number">2.000000</span>   <span class="comment">// 地板，就是取低 </span></span><br><span class="line">The <span class="built_in">floor</span> of -<span class="number">2.8</span> is -<span class="number">3.000000</span> <span class="comment">// 地板，就是取低，-3 比 -2.8 低 </span></span><br><span class="line">The <span class="built_in">ceil</span> of <span class="number">2.8</span> is <span class="number">3.000000</span>    <span class="comment">// 天花板，就是取高 </span></span><br><span class="line">The <span class="built_in">ceil</span> of -<span class="number">2.8</span> is -<span class="number">2.000000</span>  <span class="comment">// 天花板，就是取高，-2 比 -2.8高</span></span><br></pre></td></tr></table></figure></p>
+<p> 　　Word-&gt;插入-&gt;符号,在字体中选择Lucida Sans Unicode 子集选择数学运算符 就能找到向上、向下取整符号<br>该习题解答如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;                                                                 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>                                                                         </span><br><span class="line"></span>&#123;                                                                                </span><br><span class="line">    <span class="keyword">int</span> x,n;                                                                      </span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入数字：x n\n"</span>);                                                    </span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d %d"</span>,&amp;x,&amp;n);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"x/n 向上取整的结果：%d\n"</span>,(x+n-<span class="number">1</span>)/n);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>向上取整和向下取整<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[int main(int argc,char* argv[])详解]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/16/int%20main(int%20argc,char%20argv%5B%5D)%E8%AF%A6%E8%A7%A3.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/16/int main(int argc,char argv[])详解.html</id>
+    <published>2014-01-16T13:15:41.000Z</published>
+    <updated>2015-03-16T14:28:16.319Z</updated>
+    <content type="html"><![CDATA[<p>main函数的参数说明<br><a id="more"></a><br>主要是为了方便在<code>命令行</code>直接键入参数</p>
+<p>argc是命令行总的参数个数；argv[]是argc个参数，其中第0个参数是程序的全名，以后的参数命令行后面跟的用户输入的参数，argv[0]是程序的名字，命令行参数分别放在argv[1] 、argv[2]……中。比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,  <span class="keyword">char</span>* argv[])</span> </span><br><span class="line">   </span>&#123; </span><br><span class="line">       <span class="keyword">int</span>  i; </span><br><span class="line">       <span class="keyword">for</span> (i = <span class="number">0</span>; i&lt;argc; i++) </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;argv[i]&lt;&lt;endl; </span><br><span class="line">       <span class="built_in">cin</span>&gt;&gt;i; </span><br><span class="line">       <span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
+<p>执行时敲入：<code>&gt;test.exe aaa bbb ccc ddd</code><br><img src="http://i.imgur.com/I1awzAn.jpg" alt=""></p>
+<p>argc=5,<br>argv[0] 是 “test.exe”<br>argv[1] 是 “aaa”<br>argv[2] 是 “bbb”<br>argv[3] 是 “ccc”<br>argv[4] 是 “ddd”</p>
+<p><code>int main(int argc,char* argv[])</code>就是为了在程序后面直接键入参数，如：<code>&gt;notepad.exe example.txt</code>(当前目录下)，即为直接用记事本打开example.txt文件。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[main函数的参数说明。]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[数组指针和指针数组]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/16/%E6%95%B0%E7%BB%84%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E6%95%B0%E7%BB%84.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/16/数组指针和指针数组.html</id>
+    <published>2014-01-16T07:47:14.000Z</published>
+    <updated>2015-03-16T14:27:04.432Z</updated>
+    <content type="html"><![CDATA[<p>数组指针和指针数组<br><a id="more"></a></p>
+<h1 id="1-_数组指针">1. 数组指针</h1><h4 id="1-_数组指针是一个指向数组的指针，用于多维数组。例如二维数组:">1. 数组指针是一个指向数组的指针，用于多维数组。例如二维数组:</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int matrix[<span class="link_label">3</span>][<span class="link_reference">4</span>];</span><br></pre></td></tr></table></figure>
+<p><img src="http://12.jpg" alt=""></p>
+<p>其他的表示方法：<code>*（matrix[1]+2）</code><br>　　<code>matrix[1]</code>选定一个数组，是一个指向整型的指针，等同于<code>*(matrix+1)</code>，故<code>*（matrix[1]+2）</code>等同于<code>*(*(matrix+1)+2)</code>。</p>
+<h4 id="2-_指向数组的指针的定义声明：">2. 指向数组的指针的定义<strong>声明</strong>：</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<p>　　括号的优先级大，故先执行间接访问（*），所以p是一个指针；接下来执行下标操作，所以p指向某种类型的数组，由int知数组的每个元素都是整数。</p>
+<p><strong>初始化</strong>:<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int (<span class="keyword">*</span>p)[5]=matrix</span><br><span class="line">```            </span><br><span class="line">使p指向matrix的第1行，指向拥有5个整型元素的数组的指针。</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>错误的声明<span class="keyword">*</span><span class="keyword">*</span>：</span><br></pre></td></tr></table></figure></p>
+<p>int (*p)[]=matrix<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p的数组长度未知，如有空数组存在，则运算时可能出现<span class="number">0</span>长度。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">####3. 作为函数参数</span></span><br><span class="line">一维数组时：</span><br></pre></td></tr></table></figure></p>
+<p>void func1(int <em>vec);<br>void func1(int vec[]);    vec[]与</em>vec等同<br>void func2(int <em>vec[]);   </em>vec[]与**vec等同<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二维数组：</span><br></pre></td></tr></table></figure></p>
+<p>int matrix[3][5];<br>func2(matrix);<br>定义void func2(int (*mat)[10]);<br>void func2(int mat[][10]);<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　声明时必须知道第2个及以后各维的长度才能对各下标进行求值。所以原型中必须声明这些维的长度，第一维的长度并不需要，因为在计算下标值时用不到它。</span><br><span class="line">区别</span><br><span class="line">　　编写一维数组形参的函数原型时，可以写成数组的形式，也可以写成指针的形式。但是，对于多维数组不能用单纯的指针来声明，类如下面的原型时不正确的：</span><br></pre></td></tr></table></figure></p>
+<p>void func2(int **mat);<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">把mat声明成一个指向整型指针的指针，它和指向整型数组的指针并不是一回事。</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 指针数组</span></span><br><span class="line">　　元素是指针的数组。</span><br><span class="line">声明：</span><br></pre></td></tr></table></figure></p>
+<p>int *api[10];<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　下标引用优先级高于间接访问，故先执行下标操作，api是某个类型的数组，她包含的元素个数为10，在取得一个数组元素之后，随即执行间接访问操作，操作之后它是一个整型值。故知api数组的元素是一个指向整型元素的指针。</span><br><span class="line"></span><br><span class="line">举例：</span><br></pre></td></tr></table></figure></p>
+<p>char const *keyword[]={“do”, “for”, “if”, “register”，“return”, “switch”，“while”};</p>
+<h1 id="define_N_KEYWORD_（sizeof(keyword)_/_sizeof(keyword[0])）_/需要知道数组的长度">define N_KEYWORD  （sizeof(keyword) / sizeof(keyword[0])）  /需要知道数组的长度</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="title">sizeof</span><span class="params">(keyword)</span></span>是整个数组所占用的字节；<span class="function"><span class="title">sizeof</span><span class="params">(keyword[<span class="number">0</span>])</span></span>是数组元素所占用的字节，两者相除是元素个数。</span><br><span class="line">因为keyword数组的元素都是指针，每个指针的指向被初始化为一个word，故<span class="function"><span class="title">sizeof</span><span class="params">(keyword)</span></span>是所有指针元素的内存大小<span class="number">4</span>x7，<span class="function"><span class="title">sizeof</span><span class="params">(keyword[<span class="number">0</span>])</span></span>是一个指针元素的内存大小<span class="number">4</span>（int型）。</span><br><span class="line"></span><br><span class="line">与矩阵的区别：</span><br></pre></td></tr></table></figure>
+<p>char const keyword[][9]= {“do”, “for”, “if”, “register”，“return”, “switch”，“while”};<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">矩阵</span><br><span class="line">!<span class="attr_selector">[]</span>(<span class="attribute">http</span>:<span class="comment">//13.jpg)</span></span><br><span class="line">指针数组</span><br><span class="line">![](<span class="attribute">http</span>:<span class="comment">//14.jpg)    </span></span><br><span class="line"></span><br><span class="line">指针数组改进：</span><br></pre></td></tr></table></figure></p>
+<p>char const *keyword[] = {“do”, “for”, “if”, “register”，“return”, “switch”，“while”，NULL};<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在结尾加一个<span class="keyword">NULL</span>指针，使函数在搜索这个表时能够检测到表的结束，而无需预先知道表的长度，如下所示：</span><br></pre></td></tr></table></figure></p>
+<p>char const <em>*kwp;<br>for（kwp=keyword_table; </em>kwp != NULL; kwp++）<br>```</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>数组指针和指针数组<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[字符数组和字符串]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/15/%E5%AD%97%E7%AC%A6%E6%95%B0%E7%BB%84%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/15/字符数组和字符串.html</id>
+    <published>2014-01-15T13:03:24.000Z</published>
+    <updated>2015-03-30T12:19:35.344Z</updated>
+    <content type="html"><![CDATA[<p>字符数组与字符串<br><a id="more"></a></p>
+<h2 id="一、字符与字符串">一、字符与字符串</h2><p>字符用单撇号<code>（&#39;&#39;）</code>括起来，字符串用双撇号<code>（&quot;&quot;）</code>括起来：</p>
+<ul>
+<li>字符：<code>&#39;a&#39;</code></li>
+<li>字符串：<code>&quot;a&quot;</code></li>
+</ul>
+<p>不能把<code>字符串</code>赋值给<code>字符变量</code>:<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#错：</span></span><br><span class="line"><span class="keyword">char</span> c;   </span><br><span class="line">c = <span class="string">"a"</span>; <span class="comment">//错:把字符串赋值给字符了</span></span><br></pre></td></tr></table></figure></p>
+<p>　　区别：字符串在结尾处有一个字符<code>&#39;\0&#39;</code>作为字符串结束标志（系统自动添加）。故在内存中<code>&quot;a&quot;</code>的内存单元不是1个字符，而是2个字符：<code>&#39;a&#39;</code>和<code>&#39;\0&#39;</code>。</p>
+<hr>
+<h2 id="二、字符数组字符串">二、字符数组字符串</h2><p>字符数组就是结尾没有<code>\0</code>结尾的，有几位就全被定义了：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c[<span class="number">5</span>]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>,<span class="string">'l'</span>,<span class="string">'o'</span>&#125;;  <span class="comment">// 字符数组 没有\0</span></span><br></pre></td></tr></table></figure></p>
+<table><tr><td>h</td><td>e</td><td>l</td><td>l</td><td>o</td></tr></table><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> c[<span class="number">5</span>]=&#123;<span class="string">'h'</span>,<span class="string">'e'</span>,<span class="string">'l'</span>&#125;；    <span class="comment">//字符串(也是字符数组) 后面自动补\0</span></span><br></pre></td></tr></table></figure><br><br><table><tr><td>h</td><td>e</td><td>l</td><td>\0</td><td><span font-color="red">\0</span></td></tr></table>
+
+<p>针对输出的区别：</p>
+<ul>
+<li>针对第一种字符数组，不能使用<code>printf(&quot;%s&quot;,c)</code>、<code>cout&lt;&lt;c</code>的形式输出，不是字符串（<code>%s</code>类型），只可单个输出<code>c[i]</code>, <code>for(i=0;i&lt;5;i++) {printf(&quot;%c&quot;,c[i]);}</code>。</li>
+<li>第二种属于字符串，可以直接<code>printf(&quot;%s&quot;,c)</code>、<code>cout&lt;&lt;c</code>输出，对于此处<code>&quot;c&quot;</code>的理解，<code>c</code>代表数组的首地址，输出是由输出I/O输出整个数组。<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;c;   <span class="comment">//输出hel</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;c+<span class="number">1</span>; <span class="comment">//输出el</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;&amp;c;  <span class="comment">//输出首元素的地址</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;*c;  <span class="comment">//输出首元素h</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>若有<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> *p;</span><br><span class="line">p=c;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;p;   <span class="comment">//输出hel</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;p+<span class="number">1</span>; <span class="comment">//输出el</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;*p;  <span class="comment">//输出首元素h</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;&amp;p;  <span class="comment">//输出指针p自己的地址</span></span><br></pre></td></tr></table></figure></p>
+<p>　　字符串以<code>\0</code>结束那是字符串在计算机内的存储结构，你定义了字符串计算机默认会在字符串后加上<code>\0</code>做为字符串结束标记，但是你写程序时并没有显式的写出来。</p>
+<ul>
+<li>判断是否为字符串：字符串都是用双引号包含的。</li>
+<li>用字符数组定义注意：数组长度为<code>n</code>，但是字符个数只能为<code>n-1</code>，就是上面说的计算机默认加了<code>\0</code>占了一个，否则会溢出。</li>
+</ul>
+<p>通常字符数组中的所存储的内容也可以称为字符串, 但此表达仅限于:<br><code>char p1[] = &quot;A String.&quot;;</code><br>和<br><code>char *p2 = &quot;Another String.&quot;;</code><br>这两种写法是不同的：<code>p1</code>是一个指针常量，<code>p2</code>是一个指针变量。</p>
+<p>　　<code>p1</code>指向的这个字符串是个常量, 不可改变。不可以对<code>p1</code>进行修改（例如<code>p1++</code>错）。而<code>p2</code>是个变量, 其内容可以被更新和改变, <code>p2</code>可以理解为一个不可改变其指向位置的指针, 即<code>char * const p2</code>, 其指向的内容不可变，但是<code>p2</code>可变，可操作：<code>p2++</code>,此时<code>p2</code>指向第二个字符 <code>&#39;n&#39;</code>。它所占用的内存在程序运行时被自动分配和释放, 而<code>p1</code>占用的内存要等到整个程序结束时才被释放。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>字符数组与字符串<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Sizeof与Strlen的区别]]></title>
+    <link href="http://www.sweetfish1991.com/2014/01/15/Sizeof%E4%B8%8EStrlen%E7%9A%84%E5%8C%BA%E5%88%AB.html"/>
+    <id>http://www.sweetfish1991.com/2014/01/15/Sizeof与Strlen的区别.html</id>
+    <published>2014-01-15T07:48:05.000Z</published>
+    <updated>2015-03-30T12:28:52.622Z</updated>
+    <content type="html"><![CDATA[<p>Sizeof与Strlen的区别<br><a id="more"></a></p>
+<h2 id="1-_sizeof">1. sizeof</h2><p>　　sizeof(…)是运算符，在头文件中typedef为unsigned int，其值在编译时即计算好了，参数可以是数组、指针、类型、对象、函数等。<br>　　它的功能是：获得保证能容纳实现所建立的最大对象的字节大小。<br>　　由于在编译时计算，因此sizeof不能用来返回动态分配的内存空间的大小。实际上，用sizeof来返回类型以及静态分配的对象、结构或数组所占的空间，返回值跟对象、结构、数组所存储的内容没有关系。<br>　　具体而言，当参数分别如下时，sizeof返回的值表示的含义如下：<br>　　　　数组——编译时分配的数组空间大小；<br>　　　　指针——存储该指针所用的空间大小（存储该指针的地址的长度，是长整型，应该为4）；<br>　　　　类型——该类型所占的空间大小；<br>　　　　对象——对象的实际占用空间大小；<br>　　　　函数——函数的返回类型所占的空间大小。函数的返回类型不能是void。</p>
+<hr>
+<h2 id="2-_strlen">2. strlen</h2><p>　　strlen(…)是函数，要在运行时才能计算。参数必须是字符型指针（char*）。当数组名作为参数传入时，实际上数组就退化成指针了。<br>　　它的功能是：返回字符串的长度。该字符串可能是自己定义的，也可能是内存中随机的，该函数实际完成的功能是从代表该字符串的第一个地址开始遍历，直到遇到结束符NULL。返回的长度大小不包括NULL。</p>
+<hr>
+<h2 id="3-_举例：">3. 举例：</h2><h5 id="NO-1">NO.1</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> arr[<span class="number">10</span>] = <span class="string">"What?"</span>;</span><br><span class="line"><span class="keyword">int</span> len_one = <span class="built_in">strlen</span>(arr);</span><br><span class="line"><span class="keyword">int</span> len_two = <span class="keyword">sizeof</span>(arr); </span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; len_one &lt;&lt; <span class="string">" and "</span> &lt;&lt; len_two &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：5 and 10</p>
+<blockquote>
+<p>sizeof返回定义arr数组时，编译器为其分配的数组空间大小，不关心里面存了多少数据。strlen只关心存储的数据内容，不关心空间的大小和类型。</p>
+</blockquote>
+<h5 id="NO-2">NO.2</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> * parr = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> len_one = <span class="built_in">strlen</span>(parr);</span><br><span class="line"><span class="keyword">int</span> len_two = <span class="keyword">sizeof</span>(parr);</span><br><span class="line"><span class="keyword">int</span> len_three = <span class="keyword">sizeof</span>(*parr);</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; len_one &lt;&lt; <span class="string">" and "</span> &lt;&lt; len_two &lt;&lt; <span class="string">" and "</span> &lt;&lt; len_three &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+<p>输出结果：23 and 4 and 1</p>
+<blockquote>
+<p>第一个输出结果23实际上每次运行可能不一样，这取决于parr里面存了什么（从parr[0]开始知道遇到第一个NULL结束）；第二个结果实际上本意是想计算parr所指向的动态内存空间的大小，但是事与愿违，sizeof认为parr是个字符指针，因此返回的是该指针所占的空间（指针的存储用的是长整型，所以为4）;第三个结果，由于*parr所代表的是parr所指的地址空间存放的字符，所以长度为1。</p>
+</blockquote>
+<hr>
+<h2 id="4-_参考资料：">4. 参考资料：</h2><h3 id="Sizeof与Strlen的区别与联系[转]">Sizeof与Strlen的区别与联系[转]</h3><ol>
+<li><p>sizeof操作符的结果类型是size_t，它在头文件中typedef为unsigned int类型。该类型保证能容纳实现所建立的最大对象的字节大小。 </p>
+</li>
+<li><p>sizeof是算符，strlen是函数。 </p>
+</li>
+<li><p>sizeof可以用类型做参数，strlen只能用char*做参数，且必须是以’’\0’’结尾的。<br>sizeof还可以用函数做参数，比如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">short</span> <span class="title">f</span><span class="params">()</span></span>; </span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, <span class="keyword">sizeof</span>(f()));</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>输出的结果是sizeof(short)，即2。 </p>
+<ol>
+<li><p>数组做sizeof的参数不退化，传递给strlen就退化为指针了。 </p>
+</li>
+<li><p>大部分编译程序 在编译的时候就把sizeof计算过了 是类型或是变量的长度这就是sizeof(x)可以用来定义数组维数的原因 </p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">str</span>[<span class="number">20</span>]=<span class="string">"0123456789"</span>; </span><br><span class="line"><span class="keyword">int</span> a=strlen(<span class="keyword">str</span>); <span class="comment">//a=10; </span></span><br><span class="line"><span class="keyword">int</span> b=<span class="keyword">sizeof</span>(<span class="keyword">str</span>); <span class="comment">//而b=20;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>strlen的结果要在运行的时候才能计算出来，时用来计算字符串的长度，不是类型占内存的大小。 </p>
+</li>
+<li><p>sizeof后如果是类型必须加括弧，如果是变量名可以不加括弧。这是因为sizeof是个操作符不是个函数。 </p>
+</li>
+<li><p>当适用了于一个结构类型时或变量， sizeof 返回实际的大小，<br>当适用一静态地空间数组， sizeof 归还全部数组的尺寸。<br>sizeof 操作符不能返回动态地被分派了的数组或外部的数组的尺寸 </p>
+</li>
+<li><p>数组作为参数传给函数时传的是指针而不是数组，传递的是数组的首地址，如： </p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">fun</span>(<span class="value">char</span> <span class="attr_selector">[8]</span>) </span><br><span class="line"><span class="function">fun</span>(<span class="value">char</span> <span class="attr_selector">[]</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>都等价于 fun(char *)<br>在C++里参数传递数组永远都是传递指向数组首元素的指针，编译器不知道数组的大小<br>如果想在函数内知道数组的大小， 需要这样做：进入函数后用memcpy拷贝出来，长度由另一个形参传进去<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fun(unsiged <span class="keyword">char</span> *p1, <span class="keyword">int</span> len) </span><br><span class="line">&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">char</span>* buf = <span class="keyword">new</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>[len+<span class="number">1</span>];</span><br><span class="line">        <span class="built_in">memcpy</span>(buf, p1, len); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>看了上面的详细解释，发现两者使用的区别，从这个例子可以看得很清楚：<br><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">str</span>[<span class="number">20</span>]=<span class="string">"0123456789"</span>; </span><br><span class="line"><span class="keyword">int</span> a=strlen(<span class="keyword">str</span>); <span class="comment">//a=10; &gt;&gt;&gt;&gt; strlen 计算字符串的长度，以结束符 0x00 为字符串结束。 </span></span><br><span class="line"><span class="keyword">int</span> b=<span class="keyword">sizeof</span>(<span class="keyword">str</span>); <span class="comment">//而b=20; &gt;&gt;&gt;&gt; sizeof 计算的则是分配的数组 str[20] 所占的内存空间的大小，不受里面存储的内容改变。</span></span><br></pre></td></tr></table></figure></p>
+<p>上面是对静态数组处理的结果，如果是对指针，结果就不一样了：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span>* ss = <span class="string">"0123456789"</span>; </span><br><span class="line"><span class="keyword">sizeof</span>(ss)  <span class="comment">//结果 4 &gt;&gt;&gt;&gt;ss是指向字符串常量的字符指针，sizeof 获得的是一个指针的之所占的空间,应该是长整型的，所以是4 </span></span><br><span class="line"><span class="keyword">sizeof</span>(*ss)  <span class="comment">//结果 1 &gt;&gt;&gt;&gt;*ss是第一个字符 其实就是获得了字符串的第一位'0' 所占的内存空间，是char类型的，占了 1 位 </span></span><br><span class="line"><span class="built_in">strlen</span>(ss)   <span class="comment">//结果10 &gt;&gt;&gt;&gt; 如果要获得这个字符串的长度，则一定要使用 strlen</span></span><br></pre></td></tr></table></figure></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Sizeof与Strlen的区别<br>]]>
+    
+    </summary>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/tags/C-C/"/>
+    
+      <category term="C/C++" scheme="http://www.sweetfish1991.com/categories/C-C/"/>
+    
+  </entry>
+  
+</feed>
