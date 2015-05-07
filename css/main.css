@@ -1158,7 +1158,7 @@ input.menu-search-input {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e375ff;
+  background: #ff4ec2;
 }
 .sidebar-nav {
   margin: 0;
@@ -2179,8 +2179,9 @@ li {
 div .about-img-div {
   text-align: center;
   margin: 0px auto;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
-img .zbout-img {
+.about-img {
   margin: 0px auto;
+display
 }
