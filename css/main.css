@@ -1158,7 +1158,7 @@ input.menu-search-input {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff0fe3;
+  background: #e375ff;
 }
 .sidebar-nav {
   margin: 0;
@@ -1696,12 +1696,12 @@ input.menu-search-input {
 }
 @media (max-width: 767px) {
   .back-to-top {
-    display: none;
+    background-color: #ddd;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .back-to-top {
-    display: none;
+    background-color: #ddd;
   }
 }
 .back-to-top:before {
@@ -2175,4 +2175,12 @@ li {
   max-width: 100%;
   width: auto;
   margin: 0;
+}
+div .about-img-div {
+  text-align: center;
+  margin: 0px auto;
+  margin-bottom: 50px;
+}
+img .zbout-img {
+  margin: 0px auto;
 }
