@@ -147,8 +147,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2014/07/14/#ifndef、#def、#endif说明.html#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/14/#ifndef、#def、#endif说明.html"></span>
+            <a href="/2014/07/14/about ifndef def endif.html#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2014/07/14/about ifndef def endif.html"></span>
             </a>
           </span>
           
@@ -163,87 +163,48 @@
         
 
         
-          <p>#ifndef、#def、#endif说明<br><a id="more"></a></p>
+          <p>#ifndef、#def、#endif说明</p>
+<a id="more"></a>
 <p>(以下内容均来自网络整理)</p>
 <p>　　这几个宏是为了进行条件编译。一般情况下，源程序中所有的行都参加编译。但是有时希望对其中一部分内容只在满足一定条件才进行编译，也就是对一部分内容指定编译的条件，这就是“条件编译”。有时，希望当满足某条件时对一组语句进行编译，而当条件不满足时则编译另一组语句。 </p>
 <p>　　在c语言中，对同一个变量或者函数进行多次声明是不会报错的。所以如果h文件里只是进行了声明工作，即使不使用# ifndef宏定义，一个c文件多次包含同一个h文件也不会报错。使用#ifndef可以避免下面这种错误：如果在h文件中定义了全局变量，一个c文件包含同一个h文件多次，如果不加#ifndef宏定义，会出现变量重复定义的错误；如果加了#ifndef，则不会出现这种错.</p>
 <p>C++头文件条件编译：</p>
 <p><code>#ifndef 标识1</code>  //判断”标识1”是否定义，如果被定义则返回假，如果没有被定义则返回真。</p>
-<figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/</span><br><span class="line">语句1 <span class="comment">#ifndef 标识1</span></span><br><span class="line">语句2 <span class="comment">#define 标识1</span></span><br><span class="line">语句3 <span class="comment">#endif</span></span><br><span class="line">语句4 ……</span><br><span class="line">语句5 ……</span><br><span class="line">/<span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span>/</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**********************************/</span></span><br><span class="line">语句<span class="number">1</span> <span class="preprocessor">#ifndef 标识1</span></span><br><span class="line">语句<span class="number">2</span> <span class="preprocessor">#<span class="keyword">define</span> 标识1</span></span><br><span class="line">语句<span class="number">3</span> <span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line">语句<span class="number">4</span> ……</span><br><span class="line">语句<span class="number">5</span> ……</span><br><span class="line"><span class="comment">/***********************************/</span></span><br></pre></td></tr></table></figure>
 <p>该段代码意思是：如果标识1没有被定义，则重定义标识1，即执行语句2、语句3;如果标识1已经被定义，则直接跳过语句2、语句3，直接执行语句4、语句5、……</p>
 <blockquote>
 <p>备注：#ifndef 和 #endif 要一起使用，如果丢失#endif，可能会报错。</p>
 </blockquote>
 <p>　　千万不要忽略了头文件中的#ifndef，这是一个很关键的东西。比如你有两个C文件，这两个C文件都include了同一个头文件。而编译时，这两个C文件要一同编译成一个可运行文件，于是问题来了，大量的声明冲突。</p>
-<p>例如要编写头文件test.h，在头文件开头写上两行：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> _TEST_H</span><br><span class="line"><span class="hexcolor">#def</span>ine _TEST_H<span class="comment">//一般是文件名的大写 头文件结尾写上一行：</span></span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
+<p>例如要编写头文件test.h，在头文件开头写上两行：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef _TEST_H</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _TEST_H<span class="comment">//一般是文件名的大写 头文件结尾写上一行：</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
 <p>这样一个工程文件里同时包含两个test.h时，就不会出现重定义的错误了。</p>
 <blockquote>
 <p><strong>分析:</strong><br>当第一次包含test.h时，由于没有定义_TEST_H，条件为真，这样就会包含（执行）#ifndef _TEST_H和#endif之间的代码，当第二次包含test.h时前面一次已经定义了_TEST_H，条件为假，#ifndef _TEST_H和#endif之间的代码也就不会再次被包含，这样就避免了重定义了.</p>
 </blockquote>
-<p>　　最好还是把头文件的内容都放在#ifndef和#endif中。不管头文件会不会被多个文件引用，都要加上这个。一般格式是这样的：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> &lt;标识&gt;</span><br><span class="line"><span class="hexcolor">#def</span>ine &lt;标识&gt;</span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
-<p>　　&lt;标识&gt;在理论上来说可以是自由命名的，但每个头文件的这个“标识”都应该是唯一的。标识的命名规则一般是头文件名全大写，前面加下划线，并把文件名中的“.”也变成下划线，如：stdio.h<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="id">#ifndef</span> _STDIO_H</span><br><span class="line"><span class="hexcolor">#def</span>ine _STDIO_H</span><br><span class="line">......</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure></p>
-<p>条件编译命令最常见的形式为： </p>
-<pre><code><span class="id">#ifdef</span> 标识符 
-程序段<span class="number">1</span> 
-<span class="id">#else</span> 
-程序段<span class="number">2</span> 
-<span class="id">#endif</span> 
-</code></pre><p>　　它的作用是：当标识符已经被定义过(一般是用#define命令定义)，则对程序段1进行编译，否则编译程序段2。<br>其中#else部分也可以没有，即： </p>
-<pre><code><span class="id">#ifdef</span> 
-程序段<span class="number">1</span> 
-<span class="id">#denif</span> 
-</code></pre><p>　　这里的“程序段”可以是语句组，也可以是命令行。这种条件编译可以提高C源程序的通用性。如果一个C源程序在不同计算机系统上系统上运行，而不同的计算机又有一定的差异。例如，我们有一个数据类型，在Windows平台中，应该使用long类型表示，而在其他平台应该使用float表示，这样往往需要对源程序作必要的修改，这就降低了程序的通用性。可以用以下的条件编译： </p>
-<pre><code><span class="id">#ifdef</span> WINDOWS 
-<span class="hexcolor">#def</span>ine MYTYPE long 
-<span class="id">#else</span> 
-<span class="hexcolor">#def</span>ine MYTYPE <span class="attribute">float</span> 
-<span class="id">#endif</span> 
-</code></pre><p>如果在Windows上编译程序，则可以在程序的开始加上 </p>
-<pre><code><span class="hexcolor">#def</span>ine WINDOWS 
-</code></pre><p>这样则编译下面的命令行： </p>
-<pre><code><span class="hexcolor">#def</span>ine MYTYPE long 
-</code></pre><p>如果在这组条件编译命令之前曾出现以下命令行： </p>
-<pre><code><span class="hexcolor">#def</span>ine WINDOWS <span class="number">0</span> 
-</code></pre><p>则预编译后程序中的MYTYPE都用float代替。这样，源程序可以不必作任何修改就可以用于不同类型的计算机系统。当然以上介绍的只是一种简单的情况，可以根据此思路设计出其它的条件编译。<br>例如，在调试程序时，常常希望输出一些所需的信息，而在调试完成后不再输出这些信息。可以在源程序中插入以下的条件编译段： </p>
-<pre><code><span class="preprocessor">#ifdef DEBUG </span>
-print (<span class="string">"device_open(%p)\n"</span>, file); 
-<span class="preprocessor">#endif </span>
-
-如果在它的前面有以下命令行： 
-<span class="preprocessor">#define DEBUG </span>
-</code></pre><p>　　则在程序运行时输出file指针的值，以便调试分析。调试完成后只需将这个define命令行删除即可。有人可能觉得不用条件编译也可达此目的，即在调试时加一批printf语句，调试后一一将printf语句删除去。的确，这是可以的。但是，当调试时加的printf语句比较多时，修改的工作量是很大的。用条件编译，则不必一一删改printf语句，只需删除前面的一条“#define DEBUG”命令即可，这时所有的用DEBUG作标识符的条件编译段都使其中的printf语句不起作用，即起统一控制的作用，如同一个“开关”一样。<br> 有时也采用下面的形式： </p>
-<pre><code><span class="id">#ifndef</span> 标识符 
-程序段<span class="number">1</span> 
-<span class="id">#else</span> 
-程序段<span class="number">2</span> 
-<span class="id">#endif</span> 
-</code></pre><p>　　只是第一行与第一种形式不同：将“ifdef”改为“ifndef”。它的作用是：若标识符未被定义则编译程序段1，否则编译程序段2。这种形式与第一种形式的作用相反。<br>以上两种形式用法差不多，根据需要任选一种，视方便而定。<br>还有一种形式，就是#if后面的是一个表达式，而不是一个简单的标识符： </p>
-<pre><code><span class="preprocessor">#<span class="keyword">if</span> 表达式 </span>
-程序段<span class="number">1</span> 
-<span class="preprocessor">#<span class="keyword">else</span> </span>
-程序段<span class="number">2</span> 
-<span class="preprocessor">#<span class="keyword">endif</span> </span>
-</code></pre><p>　　它的作用是：当指定的表达式值为真（非零）时就编译程序段1，否则编译程序段2。可以事先给定一定条件，使程序在不同的条件下执行不同的功能。<br>例如：输入一行字母字符，根据需要设置条件编译，使之能将字母全改为大写输出，或全改为小写字母输出。 </p>
-<pre><code><span class="preprocessor">#<span class="keyword">define</span> LETTER 1 </span>
-main() 
-{ 
-<span class="keyword">char</span> str[<span class="number">20</span>]=<span class="string">"C Language"</span>,c; 
-<span class="keyword">int</span> i=<span class="number">0</span>; 
-<span class="keyword">while</span>((c=str[i])!=<span class="string">'\0'</span>){ 
-i++; 
-<span class="preprocessor">#<span class="keyword">if</span> LETTER </span>
-<span class="keyword">if</span>(c&gt;=<span class="string">'a'</span>&amp;&amp;c&lt;=<span class="string">'z'</span>) c=c-<span class="number">32</span>; 
-<span class="preprocessor">#<span class="keyword">else</span> </span>
-<span class="keyword">if</span>(c&gt;=<span class="string">'A'</span>&amp;&amp;c&lt;=<span class="string">'Z'</span>) c=c+<span class="number">32</span>; 
-<span class="preprocessor">#<span class="keyword">endif</span> </span>
-<span class="built_in">printf</span>(<span class="string">"%c"</span>,c); 
-} 
-} 
-</code></pre><p>运行结果为：C LANGUAGE</p>
-<p>　　现在先定义LETTER为1，这样在预处理条件编译命令时，由于LETTER为真（非零），则对第一个if语句进行编译，运行时使小写字母变大写。如果将程序第一行改为： </p>
-<pre><code><span class="hexcolor">#def</span>ine LETTER <span class="number">0</span> 
-</code></pre><p>则在预处理时，对第二个if语句进行编译处理，使大写字母变成小写字母（大写字母与相应的小写字母的ASCII代码差32）。此时运行情况为：<br>    c language 
-　　</p>
+<p>　　最好还是把头文件的内容都放在#ifndef和#endif中。不管头文件会不会被多个文件引用，都要加上这个。一般格式是这样的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef &lt;标识&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> &lt;标识&gt;</span></span><br><span class="line">......</span><br><span class="line">......</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>　　&lt;标识&gt;在理论上来说可以是自由命名的，但每个头文件的这个“标识”都应该是唯一的。标识的命名规则一般是头文件名全大写，前面加下划线，并把文件名中的“.”也变成下划线，如：stdio.h</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef _STDIO_H</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _STDIO_H</span></span><br><span class="line">......</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>条件编译命令最常见的形式为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifdef 标识符 </span></span><br><span class="line">程序段<span class="number">1</span> </span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span> </span></span><br><span class="line">程序段<span class="number">2</span> </span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>　　它的作用是：当标识符已经被定义过(一般是用#define命令定义)，则对程序段1进行编译，否则编译程序段2。<br>其中#else部分也可以没有，即：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifdef</span></span><br><span class="line">程序段<span class="number">1</span></span><br><span class="line"><span class="preprocessor">#denif</span></span><br></pre></td></tr></table></figure></p>
+<p>　　这里的“程序段”可以是语句组，也可以是命令行。这种条件编译可以提高C源程序的通用性。如果一个C源程序在不同计算机系统上系统上运行，而不同的计算机又有一定的差异。例如，我们有一个数据类型，在Windows平台中，应该使用long类型表示，而在其他平台应该使用float表示，这样往往需要对源程序作必要的修改，这就降低了程序的通用性。可以用以下的条件编译：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifdef WINDOWS </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MYTYPE long </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span> </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MYTYPE float </span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>如果在Windows上编译程序，则可以在程序的开始加上<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> WINDOWS</span></span><br></pre></td></tr></table></figure></p>
+<p>这样则编译下面的命令行：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MYTYPE long</span></span><br></pre></td></tr></table></figure></p>
+<p>如果在这组条件编译命令之前曾出现以下命令行：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> WINDOWS 0</span></span><br></pre></td></tr></table></figure></p>
+<p>则预编译后程序中的MYTYPE都用float代替。这样，源程序可以不必作任何修改就可以用于不同类型的计算机系统。当然以上介绍的只是一种简单的情况，可以根据此思路设计出其它的条件编译。<br>例如，在调试程序时，常常希望输出一些所需的信息，而在调试完成后不再输出这些信息。可以在源程序中插入以下的条件编译段：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifdef DEBUG </span></span><br><span class="line">print (<span class="string">"device_open(%p)\n"</span>, file); </span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>如果在它的前面有以下命令行：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> DEBUG</span></span><br></pre></td></tr></table></figure>
+<p>　　则在程序运行时输出file指针的值，以便调试分析。调试完成后只需将这个define命令行删除即可。有人可能觉得不用条件编译也可达此目的，即在调试时加一批printf语句，调试后一一将printf语句删除去。的确，这是可以的。但是，当调试时加的printf语句比较多时，修改的工作量是很大的。用条件编译，则不必一一删改printf语句，只需删除前面的一条“#define DEBUG”命令即可，这时所有的用DEBUG作标识符的条件编译段都使其中的printf语句不起作用，即起统一控制的作用，如同一个“开关”一样。 </p>
+<p>有时也采用下面的形式：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef 标识符 </span></span><br><span class="line">程序段<span class="number">1</span> </span><br><span class="line"><span class="preprocessor">#<span class="keyword">else</span> </span></span><br><span class="line">程序段<span class="number">2</span> </span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
+<p>　　只是第一行与第一种形式不同：将“ifdef”改为“ifndef”。它的作用是：若标识符未被定义则编译程序段1，否则编译程序段2。这种形式与第一种形式的作用相反。</p>
+<p>以上两种形式用法差不多，根据需要任选一种，视方便而定。 </p>
+<p>还有一种形式，就是#if后面的是一个表达式，而不是一个简单的标识符：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">    <span class="preprocessor">#<span class="keyword">if</span> 表达式 </span></span><br><span class="line">    程序段<span class="number">1</span> </span><br><span class="line">    <span class="preprocessor">#<span class="keyword">else</span> </span></span><br><span class="line">    程序段<span class="number">2</span> </span><br><span class="line">    <span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">　　它的作用是：当指定的表达式值为真（非零）时就编译程序段<span class="number">1</span>，否则编译程序段<span class="number">2</span>。可以事先给定一定条件，使程序在不同的条件下执行不同的功能。 </span><br><span class="line"></span><br><span class="line">例如：输入一行字母字符，根据需要设置条件编译，使之能将字母全改为大写输出，或全改为小写字母输出。</span><br><span class="line">```C++</span><br><span class="line">    <span class="preprocessor">#<span class="keyword">define</span> LETTER 1 </span></span><br><span class="line">    main() </span><br><span class="line">    &#123; </span><br><span class="line">    	<span class="keyword">char</span> str[<span class="number">20</span>]=<span class="string">"C Language"</span>,c; </span><br><span class="line">    	<span class="keyword">int</span> i=<span class="number">0</span>; </span><br><span class="line">    	<span class="keyword">while</span>((c=str[i])!=<span class="string">'\0'</span>)&#123; </span><br><span class="line">	    	i++; </span><br><span class="line">	    	<span class="preprocessor">#<span class="keyword">if</span> LETTER </span></span><br><span class="line">	    	<span class="keyword">if</span>(c&gt;=<span class="string">'a'</span>&amp;&amp;c&lt;=<span class="string">'z'</span>) c=c-<span class="number">32</span>; </span><br><span class="line">	    	<span class="preprocessor">#<span class="keyword">else</span> </span></span><br><span class="line">	    	<span class="keyword">if</span>(c&gt;=<span class="string">'A'</span>&amp;&amp;c&lt;=<span class="string">'Z'</span>) c=c+<span class="number">32</span>; </span><br><span class="line">	    	<span class="preprocessor">#<span class="keyword">endif</span> </span></span><br><span class="line">	    	<span class="built_in">printf</span>(<span class="string">"%c"</span>,c); </span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<p>运行结果为：C LANGUAGE</p>
+<p>　　现在先定义LETTER为1，这样在预处理条件编译命令时，由于LETTER为真（非零），则对第一个if语句进行编译，运行时使小写字母变大写。如果将程序第一行改为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> LETTER 0</span></span><br></pre></td></tr></table></figure></p>
+<p>则在预处理时，对第二个if语句进行编译处理，使大写字母变成小写字母（大写字母与相应的小写字母的ASCII代码差32）。此时运行情况为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c language</span><br></pre></td></tr></table></figure></p>
+<p>　　</p>
 <blockquote>
 <p><strong>不用条件编译命令而直接用if语句也能达到要求，用条件编译命令有什么好处呢？</strong><br>的确，此问题完全可以不用条件编译处理，但那样做目标程序长（因为所有语句都编译），而采用条件编译，可以减少被编译的语句，从而减少目标的长度。当条件编译段比较多时，目标程序长度可以大大减少。 </p>
 </blockquote>
@@ -291,8 +252,8 @@ i++;
   
     <div class="comments" id="comments">
       
-        <div class="ds-thread" data-thread-key="2014/07/14/#ifndef、#def、#endif说明.html"
-             data-title="宏定义#ifndef、#def、#endif说明[转]" data-url="http://blog.sweetfish1991.com/2014/07/14/#ifndef、#def、#endif说明.html">
+        <div class="ds-thread" data-thread-key="2014/07/14/about ifndef def endif.html"
+             data-title="宏定义#ifndef、#def、#endif说明[转]" data-url="http://blog.sweetfish.cn/2014/07/14/about ifndef def endif.html">
         </div>
 
       
@@ -336,21 +297,21 @@ i++;
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -420,7 +381,7 @@ i++;
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

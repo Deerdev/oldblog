@@ -163,23 +163,33 @@
         
 
         
-          <p>数组指针和指针数组<br><a id="more"></a></p>
-<h1 id="1-_数组指针">1. 数组指针</h1><h4 id="1-_数组指针是一个指向数组的指针，用于多维数组。例如二维数组:">1. 数组指针是一个指向数组的指针，用于多维数组。例如二维数组:</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int matrix[<span class="link_label">3</span>][<span class="link_reference">4</span>];</span><br></pre></td></tr></table></figure>
-<p><img src="http://12.jpg" alt=""></p>
+          <p>数组指针和指针数组</p>
+<a id="more"></a>
+<h1 id="1-_数组指针">1. 数组指针</h1><h4 id="1-_数组指针是一个指向数组的指针，用于多维数组。例如二维数组:">1. 数组指针是一个指向数组的指针，用于多维数组。例如二维数组:</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> matrix[<span class="number">3</span>][<span class="number">4</span>];</span><br></pre></td></tr></table></figure>
+<p><img src="http://i.imgur.com/07bd6RS.png" alt=""></p>
 <p>其他的表示方法：<code>*（matrix[1]+2）</code><br>　　<code>matrix[1]</code>选定一个数组，是一个指向整型的指针，等同于<code>*(matrix+1)</code>，故<code>*（matrix[1]+2）</code>等同于<code>*(*(matrix+1)+2)</code>。</p>
-<h4 id="2-_指向数组的指针的定义声明：">2. 指向数组的指针的定义<strong>声明</strong>：</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+<h4 id="2-_指向数组的指针的定义声明：">2. 指向数组的指针的定义<strong>声明</strong>：</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
 <p>　　括号的优先级大，故先执行间接访问（*），所以p是一个指针；接下来执行下标操作，所以p指向某种类型的数组，由int知数组的每个元素都是整数。</p>
-<p><strong>初始化</strong>:<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int (<span class="keyword">*</span>p)[5]=matrix</span><br><span class="line">```            </span><br><span class="line">使p指向matrix的第1行，指向拥有5个整型元素的数组的指针。</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span>错误的声明<span class="keyword">*</span><span class="keyword">*</span>：</span><br></pre></td></tr></table></figure></p>
-<p>int (*p)[]=matrix<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">p的数组长度未知，如有空数组存在，则运算时可能出现<span class="number">0</span>长度。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">####3. 作为函数参数</span></span><br><span class="line">一维数组时：</span><br></pre></td></tr></table></figure></p>
-<p>void func1(int <em>vec);<br>void func1(int vec[]);    vec[]与</em>vec等同<br>void func2(int <em>vec[]);   </em>vec[]与**vec等同<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">二维数组：</span><br></pre></td></tr></table></figure></p>
-<p>int matrix[3][5];<br>func2(matrix);<br>定义void func2(int (*mat)[10]);<br>void func2(int mat[][10]);<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　声明时必须知道第2个及以后各维的长度才能对各下标进行求值。所以原型中必须声明这些维的长度，第一维的长度并不需要，因为在计算下标值时用不到它。</span><br><span class="line">区别</span><br><span class="line">　　编写一维数组形参的函数原型时，可以写成数组的形式，也可以写成指针的形式。但是，对于多维数组不能用单纯的指针来声明，类如下面的原型时不正确的：</span><br></pre></td></tr></table></figure></p>
-<p>void func2(int **mat);<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">把mat声明成一个指向整型指针的指针，它和指向整型数组的指针并不是一回事。</span><br><span class="line"></span><br><span class="line"><span class="keyword">*</span><span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2. 指针数组</span></span><br><span class="line">　　元素是指针的数组。</span><br><span class="line">声明：</span><br></pre></td></tr></table></figure></p>
-<p>int *api[10];<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">　　下标引用优先级高于间接访问，故先执行下标操作，api是某个类型的数组，她包含的元素个数为10，在取得一个数组元素之后，随即执行间接访问操作，操作之后它是一个整型值。故知api数组的元素是一个指向整型元素的指针。</span><br><span class="line"></span><br><span class="line">举例：</span><br></pre></td></tr></table></figure></p>
-<p>char const *keyword[]={“do”, “for”, “if”, “register”，“return”, “switch”，“while”};</p>
-<h1 id="define_N_KEYWORD_（sizeof(keyword)_/_sizeof(keyword[0])）_/需要知道数组的长度">define N_KEYWORD  （sizeof(keyword) / sizeof(keyword[0])）  /需要知道数组的长度</h1><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">　　<span class="function"><span class="title">sizeof</span><span class="params">(keyword)</span></span>是整个数组所占用的字节；<span class="function"><span class="title">sizeof</span><span class="params">(keyword[<span class="number">0</span>])</span></span>是数组元素所占用的字节，两者相除是元素个数。</span><br><span class="line">因为keyword数组的元素都是指针，每个指针的指向被初始化为一个word，故<span class="function"><span class="title">sizeof</span><span class="params">(keyword)</span></span>是所有指针元素的内存大小<span class="number">4</span>x7，<span class="function"><span class="title">sizeof</span><span class="params">(keyword[<span class="number">0</span>])</span></span>是一个指针元素的内存大小<span class="number">4</span>（int型）。</span><br><span class="line"></span><br><span class="line">与矩阵的区别：</span><br></pre></td></tr></table></figure>
-<p>char const keyword[][9]= {“do”, “for”, “if”, “register”，“return”, “switch”，“while”};<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">矩阵</span><br><span class="line">!<span class="attr_selector">[]</span>(<span class="attribute">http</span>:<span class="comment">//13.jpg)</span></span><br><span class="line">指针数组</span><br><span class="line">![](<span class="attribute">http</span>:<span class="comment">//14.jpg)    </span></span><br><span class="line"></span><br><span class="line">指针数组改进：</span><br></pre></td></tr></table></figure></p>
-<p>char const *keyword[] = {“do”, “for”, “if”, “register”，“return”, “switch”，“while”，NULL};<br><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在结尾加一个<span class="keyword">NULL</span>指针，使函数在搜索这个表时能够检测到表的结束，而无需预先知道表的长度，如下所示：</span><br></pre></td></tr></table></figure></p>
-<p>char const <em>*kwp;<br>for（kwp=keyword_table; </em>kwp != NULL; kwp++）<br>```</p>
+<p><strong>初始化</strong>:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> (*p)[<span class="number">5</span>]=matrix</span><br><span class="line">```   </span><br><span class="line"></span><br><span class="line">使p指向matrix的第<span class="number">1</span>行，指向拥有<span class="number">5</span>个整型元素的数组的指针。</span><br><span class="line"></span><br><span class="line">**错误的声明**：</span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line"><span class="keyword">int</span> (*p)[]=matrix</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">p的数组长度未知，如有空数组存在，则运算时可能出现<span class="number">0</span>长度。</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#### 3. 作为函数参数</span></span><br><span class="line"></span><br><span class="line">一维数组时：</span><br><span class="line"></span><br><span class="line">```C++</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> *vec)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> vec[])</span></span>;    vec[]与*vec等同   </span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> *vec[])</span></span>;   *vec[]与**vec等同</span><br></pre></td></tr></table></figure>
+<p>二维数组：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> matrix[<span class="number">3</span>][<span class="number">5</span>];</span><br><span class="line">func2(matrix);</span><br><span class="line">定义<span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> (*mat)</span>[10])</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> mat[][10])</span></span>;</span><br></pre></td></tr></table></figure>
+<p>　　声明时必须知道第2个及以后各维的长度才能对各下标进行求值。所以原型中必须声明这些维的长度，第一维的长度并不需要，因为在计算下标值时用不到它。<br>区别<br>　　编写一维数组形参的函数原型时，可以写成数组的形式，也可以写成指针的形式。但是，对于多维数组不能用单纯的指针来声明，类如下面的原型时不正确的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> **mat)</span></span>;  </span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">把mat声明成一个指向整型指针的指针，它和指向整型数组的指针并不是一回事。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="preprocessor"># 2. 指针数组</span></span><br><span class="line"></span><br><span class="line">　　元素是指针的数组。</span><br><span class="line">声明：</span><br><span class="line">```C++</span><br><span class="line"><span class="keyword">int</span> *api[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+<p>　　下标引用优先级高于间接访问，故先执行下标操作，api是某个类型的数组，她包含的元素个数为10，在取得一个数组元素之后，随即执行间接访问操作，操作之后它是一个整型值。故知api数组的元素是一个指向整型元素的指针。</p>
+<p>举例：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> *keyword[]=&#123;“<span class="keyword">do</span>”, “<span class="keyword">for</span>”, “<span class="keyword">if</span>”, “<span class="keyword">register</span>”，“<span class="keyword">return</span>”, “<span class="keyword">switch</span>”，“<span class="keyword">while</span>”&#125;;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> N_KEYWORD  （sizeof(keyword) / sizeof(keyword[0])）  <span class="comment">//需要知道数组的长度</span></span></span><br></pre></td></tr></table></figure>
+<p>　　sizeof(keyword)是整个数组所占用的字节；sizeof(keyword[0])是数组元素所占用的字节，两者相除是元素个数。<br>因为keyword数组的元素都是指针，每个指针的指向被初始化为一个word，故sizeof(keyword)是所有指针元素的内存大小4x7，sizeof(keyword[0])是一个指针元素的内存大小4（int型）。</p>
+<p>与矩阵的区别：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> keyword[][<span class="number">9</span>]= &#123;“<span class="keyword">do</span>”, “<span class="keyword">for</span>”, “<span class="keyword">if</span>”, “<span class="keyword">register</span>”，“<span class="keyword">return</span>”, “<span class="keyword">switch</span>”，“<span class="keyword">while</span>”&#125;;</span><br></pre></td></tr></table></figure>
+<p>矩阵</p>
+<p><img src="http://i.imgur.com/TZ3Tnyb.jpg" alt=""></p>
+<p>指针数组</p>
+<p><img src="http://i.imgur.com/p6GaKmW.png" alt="">  </p>
+<p>指针数组改进：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> *keyword[] = &#123;“<span class="keyword">do</span>”, “<span class="keyword">for</span>”, “<span class="keyword">if</span>”, “<span class="keyword">register</span>”，“<span class="keyword">return</span>”, “<span class="keyword">switch</span>”，“<span class="keyword">while</span>”，NULL&#125;;</span><br></pre></td></tr></table></figure>
+<p>在结尾加一个NULL指针，使函数在搜索这个表时能够检测到表的结束，而无需预先知道表的长度，如下所示：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> **kwp;</span><br><span class="line"><span class="keyword">for</span>（kwp=keyword_table; *kwp != NULL; kwp++）</span><br></pre></td></tr></table></figure>
 
         
       </div>
@@ -225,7 +235,7 @@
     <div class="comments" id="comments">
       
         <div class="ds-thread" data-thread-key="2014/01/16/数组指针和指针数组.html"
-             data-title="数组指针和指针数组" data-url="http://blog.sweetfish1991.com/2014/01/16/数组指针和指针数组.html">
+             data-title="数组指针和指针数组" data-url="http://blog.sweetfish.cn/2014/01/16/数组指针和指针数组.html">
         </div>
 
       
@@ -269,21 +279,21 @@
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -334,7 +344,7 @@
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-_数组指针"><span class="nav-number">1.</span> <span class="nav-text">1. 数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_数组指针是一个指向数组的指针，用于多维数组。例如二维数组:"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1. 数组指针是一个指向数组的指针，用于多维数组。例如二维数组:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_指向数组的指针的定义声明："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2. 指向数组的指针的定义声明：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#define_N_KEYWORD_（sizeof(keyword)_/_sizeof(keyword[0])）_/需要知道数组的长度"><span class="nav-number">2.</span> <span class="nav-text">define N_KEYWORD  （sizeof(keyword) / sizeof(keyword[0])）  /需要知道数组的长度</span></a></li></ol></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-_数组指针"><span class="nav-number">1.</span> <span class="nav-text">1. 数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-_数组指针是一个指向数组的指针，用于多维数组。例如二维数组:"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1. 数组指针是一个指向数组的指针，用于多维数组。例如二维数组:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-_指向数组的指针的定义声明："><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2. 指向数组的指针的定义声明：</span></a></li></ol></li></ol></li></ol></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -353,7 +363,7 @@
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

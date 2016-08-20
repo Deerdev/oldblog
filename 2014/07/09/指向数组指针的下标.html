@@ -163,18 +163,21 @@
         
 
         
-          <p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)<br><a id="more"></a></p>
-<h2 id="1-指向数组指针的下标">1.指向数组指针的下标</h2><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p=&amp;a[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
+          <p>指向数组指针的下标，指针与引用互换，关于除法取整和不取整(取余)</p>
+<a id="more"></a>
+<h2 id="1-指向数组指针的下标">1.指向数组指针的下标</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">3</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> *p=&amp;a[<span class="number">1</span>];</span><br></pre></td></tr></table></figure>
 <p>则有<code>p[1]</code>等同于<code>p+1</code>, <code>a[2]</code><br><code>p[-1]</code>等同于<code>p-1</code>, <code>a[0]</code></p>
 <hr>
-<h2 id="2-指针与引用互换">2.指针与引用互换</h2><p>引用—&gt;指针<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> point;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = point;</span><br><span class="line"><span class="type">int</span> *cp = &amp;<span class="keyword">ref</span>;</span><br></pre></td></tr></table></figure></p>
-<p>指针—&gt;引用<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *cp;</span><br><span class="line"><span class="type">int</span> &amp;<span class="keyword">ref</span> = *p;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-指针与引用互换">2.指针与引用互换</h2><p>引用—&gt;指针</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> point;</span><br><span class="line"><span class="keyword">int</span> &amp;ref = point;</span><br><span class="line"><span class="keyword">int</span> *cp = &amp;ref;</span><br></pre></td></tr></table></figure>
+<p>指针—&gt;引用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *cp;</span><br><span class="line"><span class="keyword">int</span> &amp;ref = *p;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="3-关于除法取整和不取整——取余">3.关于除法取整和不取整——取余</h2><p>除运算除了使用反余杠<code>/</code>表示以外，很重要的一点是别忘了，对于整数类型，或字符类型的数据进行除运算时，小数部分将被截掉，因为整型类型的数据不能保存小数部分，如：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
-<p>得到结果：a 等于 2，而不是 2.5。<br>注意：可能大家会以为，之所以 5 /2 结果是 2,是因为我们让一个整型变量 a 等于它，其实原因并不是因为 a 是<br>int 类型，请看：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
-<p>虽然 a 现在被声明为实型，但执行这句程序，ａ的值仍然是 2。事实上，精度丢失是在计算机计算 5/2<br>时就发生了。所以，准确的写法是：<br><figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2.0</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-关于除法取整和不取整——取余">3.关于除法取整和不取整——取余</h2><p>除运算除了使用反余杠<code>/</code>表示以外，很重要的一点是别忘了，对于整数类型，或字符类型的数据进行除运算时，小数部分将被截掉，因为整型类型的数据不能保存小数部分，如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>得到结果：a 等于 2，而不是 2.5。<br>注意：可能大家会以为，之所以 5 /2 结果是 2,是因为我们让一个整型变量 a 等于它，其实原因并不是因为 a 是<br>int 类型，请看：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>虽然 a 现在被声明为实型，但执行这句程序，ａ的值仍然是 2。事实上，精度丢失是在计算机计算 5/2<br>时就发生了。所以，准确的写法是：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5</span> / <span class="number">2.0</span>;</span><br><span class="line"><span class="preprocessor">#或者：</span></span><br><span class="line"><span class="keyword">float</span> a = <span class="number">5.0</span> / <span class="number">2.0</span>;</span><br></pre></td></tr></table></figure></p>
 <p>也就是说，只有除数或被除数至少需要有一个是明确指定为实型，除运算才能得到小数部分。这里我们也更明确类似于 5 和 5.0 在计算机中的区别：虽然数值大小一样，但加了 5.0 被当成实型数对待，而 5 则被当成整型数。</p>
-<p>在 C 和 C++里， <code>%</code> 进行求余数运算，求余数也称<code>求模</code>，以下是求余操作的例子：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> % <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
+<p>在 C 和 C++里， <code>%</code> 进行求余数运算，求余数也称<code>求模</code>，以下是求余操作的例子：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">5</span> % <span class="number">2</span>;</span><br></pre></td></tr></table></figure></p>
 <p>结果是，a 等于 1,即：5 除以2，余数为1。</p>
 
         
@@ -221,7 +224,7 @@
     <div class="comments" id="comments">
       
         <div class="ds-thread" data-thread-key="2014/07/09/指向数组指针的下标.html"
-             data-title="指向数组指针的下标" data-url="http://blog.sweetfish1991.com/2014/07/09/指向数组指针的下标.html">
+             data-title="指向数组指针的下标" data-url="http://blog.sweetfish.cn/2014/07/09/指向数组指针的下标.html">
         </div>
 
       
@@ -265,21 +268,21 @@
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -349,7 +352,7 @@
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

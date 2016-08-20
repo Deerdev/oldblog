@@ -163,9 +163,11 @@
         
 
         
-          <p>main函数的参数说明<br><a id="more"></a><br>主要是为了方便在<code>命令行</code>直接键入参数</p>
-<p>argc是命令行总的参数个数；argv[]是argc个参数，其中第0个参数是程序的全名，以后的参数命令行后面跟的用户输入的参数，argv[0]是程序的名字，命令行参数分别放在argv[1] 、argv[2]……中。比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,  <span class="keyword">char</span>* argv[])</span> </span><br><span class="line">   </span>&#123; </span><br><span class="line">       <span class="keyword">int</span>  i; </span><br><span class="line">       <span class="keyword">for</span> (i = <span class="number">0</span>; i&lt;argc; i++) </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;argv[i]&lt;&lt;endl; </span><br><span class="line">       <span class="built_in">cin</span>&gt;&gt;i; </span><br><span class="line">       <span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></p>
-<p>执行时敲入：<code>&gt;test.exe aaa bbb ccc ddd</code><br><img src="http://i.imgur.com/I1awzAn.jpg" alt=""></p>
+          <p>main函数的参数说明<br><a id="more"></a></p>
+<p>主要是为了方便在<code>命令行</code>直接键入参数</p>
+<p>argc是命令行总的参数个数；argv[]是argc个参数，其中第0个参数是程序的全名，以后的参数命令行后面跟的用户输入的参数，argv[0]是程序的名字，命令行参数分别放在argv[1] 、argv[2]……中。比如： </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,  <span class="keyword">char</span>* argv[])</span> </span><br><span class="line">   </span>&#123; </span><br><span class="line">       <span class="keyword">int</span>  i; </span><br><span class="line">       <span class="keyword">for</span> (i = <span class="number">0</span>; i&lt;argc; i++) </span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;argv[i]&lt;&lt;endl; </span><br><span class="line">       <span class="built_in">cin</span>&gt;&gt;i; </span><br><span class="line">       <span class="keyword">return</span>  <span class="number">0</span>; </span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>执行时敲入：<code>&gt;test.exe aaa bbb ccc ddd</code></p>
 <p>argc=5,<br>argv[0] 是 “test.exe”<br>argv[1] 是 “aaa”<br>argv[2] 是 “bbb”<br>argv[3] 是 “ccc”<br>argv[4] 是 “ddd”</p>
 <p><code>int main(int argc,char* argv[])</code>就是为了在程序后面直接键入参数，如：<code>&gt;notepad.exe example.txt</code>(当前目录下)，即为直接用记事本打开example.txt文件。</p>
 
@@ -213,7 +215,7 @@
     <div class="comments" id="comments">
       
         <div class="ds-thread" data-thread-key="2014/01/16/int main(int argc,char argv[])详解.html"
-             data-title="int main(int argc,char* argv[])详解" data-url="http://blog.sweetfish1991.com/2014/01/16/int main(int argc,char argv[])详解.html">
+             data-title="int main(int argc,char* argv[])详解" data-url="http://blog.sweetfish.cn/2014/01/16/int main(int argc,char argv[])详解.html">
         </div>
 
       
@@ -257,21 +259,21 @@
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -341,7 +343,7 @@
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

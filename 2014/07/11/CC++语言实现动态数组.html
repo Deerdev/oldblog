@@ -163,7 +163,8 @@
         
 
         
-          <p>C/C++语言实现动态数组<br><a id="more"></a></p>
+          <p>C/C++语言实现动态数组</p>
+<a id="more"></a>
 <p>转载地址：<a href="http://blog.csdn.net/sparkliang/article/details/5359634" target="_blank" rel="external">http://blog.csdn.net/sparkliang/article/details/5359634</a></p>
 <hr>
 <h2 id="C数组的小问题">C数组的小问题</h2><p>　　这里说的动态数组是可以根据需要动态增长占用内存的数组，比如程序初始分配了100个元素，可是运行了一段时间后区区100个空间不能满足了，现在需要400个，怎么办呢；那肯定需要再额外分配300个。</p>
@@ -178,7 +179,8 @@
 <li>最大个数固定； </li>
 </ul>
 <p>　　其实最重要的就是特征2了，不然直接使用realloc多方便呢，当然动态数组的实现也很方便，下面就会详细说说。<br>特征4实际上是个限制，但是相信我，你的程序不可能达到这个最大值。</p>
-<h2 id="动态数组的实现">动态数组的实现</h2><p>如上面所说的，动态数组实现起来很简单，以下都假设数组元素类型是T，首先需要一个辅助数据结构。<br><figure class="highlight capnproto"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">ARRAY_ELE_S</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">	T item_array[<span class="number">1024</span>];  </span><br><span class="line">&#125;;  </span><br><span class="line">ARRAY_ELE_S *pArray[<span class="number">2048</span>];  </span><br><span class="line">int iSize;</span><br></pre></td></tr></table></figure></p>
+<h2 id="动态数组的实现">动态数组的实现</h2><p>如上面所说的，动态数组实现起来很简单，以下都假设数组元素类型是T，首先需要一个辅助数据结构。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> ARRAY_ELE_S  </span><br><span class="line">&#123;  </span><br><span class="line">	T item_array[<span class="number">1024</span>];  </span><br><span class="line">&#125;;  </span><br><span class="line">ARRAY_ELE_S *pArray[<span class="number">2048</span>];  </span><br><span class="line"><span class="keyword">int</span> iSize;</span><br></pre></td></tr></table></figure>
 <p>变量pArray是一个ARRAY_ELE_S类型的指针数组，这个也就是你的动态数组了；iSize记录了当前数组的大小。</p>
 <p>上面的代码表明：</p>
 <ul>
@@ -187,8 +189,10 @@
 </ul>
 <p>　　先来看看内存占用，pArray本身占用2000*4，大约是8K的内存，基本可以忽略了。<br>如果一次分配一个2000*1024的数组array[2000*1024]，那么一次就要分配的内存是：2*sizeof(T) M，空间浪费严重。</p>
 <p>　　再来看看效率，下面就从数组最主要的操作——随机访问来看看它的效率如何；接下来再看看它是如何根据需要动态增长的。</p>
-<h2 id="随机访问">随机访问</h2><p>　　访问指定的索引位置上的数组元素，这个需要两步计算，首先定位到元素在哪个子数组上，然后再定位到子数组的元素上；其实很简单。<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T *<span class="keyword">get</span>(<span class="keyword">int</span> idx)  </span><br><span class="line">&#123;  </span><br><span class="line">	<span class="comment">// 确保索引有效  </span></span><br><span class="line">	<span class="keyword">if</span>((idx&gt;=<span class="number">0</span>) &amp;&amp; (idx&lt;iSize))  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="keyword">int</span> idx_maj = idx/<span class="number">1024</span>; <span class="comment">// 主索引  </span></span><br><span class="line">	    <span class="keyword">int</span> idx_mor = idx - (idx_maj) * <span class="number">1024</span>; <span class="comment">// 次索引  </span></span><br><span class="line">	    <span class="keyword">return</span> (&amp;(pArray[idx_maj]-&gt;item_array[idx_mor]));  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="keyword">return</span> NULL;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="动态增长">动态增长</h2><p>　　如果当前空间不够，需要动态增长数组，不然怎么叫动态呢，基本思想就是如果需要的size超过当前的数组大小，就需要增长数组，直到能够容纳size个元素，代码如下所示。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">reclac</span><span class="params">(<span class="keyword">int</span> size)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span>(size &gt;= <span class="number">1024</span>*<span class="number">2048</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 太大了  </span></span><br><span class="line">    <span class="keyword">while</span>(iSize &lt;= size)  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="comment">// 分配内存，并初始化为0  </span></span><br><span class="line">        <span class="keyword">int</span> idx = iSize/<span class="number">1024</span>;  </span><br><span class="line">	    pArray[idx] = (ARRAY_ELE_S*)<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(ARRAY_ELE_S));  </span><br><span class="line">        <span class="keyword">if</span>(pArray[idx] == NULL)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">return</span> (-<span class="number">1</span>);  </span><br><span class="line">	        &#125;  </span><br><span class="line">	        iSize += <span class="number">1024</span>;  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="随机访问">随机访问</h2><p>　　访问指定的索引位置上的数组元素，这个需要两步计算，首先定位到元素在哪个子数组上，然后再定位到子数组的元素上；其实很简单。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">T *get(<span class="keyword">int</span> idx)  </span><br><span class="line">&#123;  </span><br><span class="line">	<span class="comment">// 确保索引有效  </span></span><br><span class="line">	<span class="keyword">if</span>((idx&gt;=<span class="number">0</span>) &amp;&amp; (idx&lt;iSize))  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="keyword">int</span> idx_maj = idx/<span class="number">1024</span>; <span class="comment">// 主索引  </span></span><br><span class="line">	    <span class="keyword">int</span> idx_mor = idx - (idx_maj) * <span class="number">1024</span>; <span class="comment">// 次索引  </span></span><br><span class="line">	    <span class="keyword">return</span> (&amp;(pArray[idx_maj]-&gt;item_array[idx_mor]));  </span><br><span class="line">	&#125;  </span><br><span class="line">	<span class="keyword">return</span> NULL;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="动态增长">动态增长</h2><p>　　如果当前空间不够，需要动态增长数组，不然怎么叫动态呢，基本思想就是如果需要的size超过当前的数组大小，就需要增长数组，直到能够容纳size个元素，代码如下所示。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">reclac</span><span class="params">(<span class="keyword">int</span> size)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">if</span>(size &gt;= <span class="number">1024</span>*<span class="number">2048</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>; <span class="comment">// 太大了  </span></span><br><span class="line">    <span class="keyword">while</span>(iSize &lt;= size)  </span><br><span class="line">	&#123;  </span><br><span class="line">	    <span class="comment">// 分配内存，并初始化为0  </span></span><br><span class="line">        <span class="keyword">int</span> idx = iSize/<span class="number">1024</span>;  </span><br><span class="line">	    pArray[idx] = (ARRAY_ELE_S*)<span class="built_in">calloc</span>(<span class="number">1</span>, <span class="keyword">sizeof</span>(ARRAY_ELE_S));  </span><br><span class="line">        <span class="keyword">if</span>(pArray[idx] == NULL)  </span><br><span class="line">        &#123;  </span><br><span class="line">            <span class="keyword">return</span> (-<span class="number">1</span>);  </span><br><span class="line">	        &#125;  </span><br><span class="line">	        iSize += <span class="number">1024</span>;  </span><br><span class="line">	    &#125;  </span><br><span class="line">	    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>　　从上面的代码可以看出来，动态数组的优势非常明显，一旦分配，就不再需要修改动态数组的地址，处理非常方便，这修复了vector的一个重大缺陷，就是vector有可能会修改地址，如果vector由于空间不够，动态扩充空间后，导致修改原来的地址，这样会造成程序出现重大错误。</p>
 
@@ -236,7 +240,7 @@
     <div class="comments" id="comments">
       
         <div class="ds-thread" data-thread-key="2014/07/11/CC++语言实现动态数组.html"
-             data-title="C/C++语言实现动态数组[转]" data-url="http://blog.sweetfish1991.com/2014/07/11/CC++语言实现动态数组.html">
+             data-title="C/C++语言实现动态数组[转]" data-url="http://blog.sweetfish.cn/2014/07/11/CC++语言实现动态数组.html">
         </div>
 
       
@@ -280,21 +284,21 @@
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -364,7 +368,7 @@
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>

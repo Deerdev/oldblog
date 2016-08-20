@@ -163,7 +163,8 @@
         
 
         
-          <p>《高质量程序设计指南-C/C++》第六章读书笔记。<br><a id="more"></a></p>
+          <p>《高质量程序设计指南-C/C++》第六章读书笔记。</p>
+<a id="more"></a>
 <h2 id="6-10-1_存储类型">6.10.1 存储类型</h2><p>　　标准C为变量、常量、函数定义了4中存储类型：<code>extern</code> <code>auto</code> <code>static</code> <code>register</code>。一个变量或函数只能具有一种存储类型，一种生存期限。</p>
 <p>　　<code>extern</code>、static标识永久生存期限的变量和函数，<strong>区别</strong>：#默认情况下，全局变量和全局函数的存储类型是<code>extern</code>的，能够被定义在他们之后的同一编译单元内的函数调用；如果变量和函数被显式地的加上<code>extern</code>声明，那么其他编译单元中的函数也能调用他们。#显式地声明为<code>static</code>的全局变量和全局函数具有<code>static</code>存储类型，只能被同一个编译单元内的函数调用。</p>
 <p>　　<code>auto</code>、<code>register</code>标识临时生存期限的变量（只有变量才有临时生存期限）。区别：#<code>register</code>修饰的变量会被直接加载到CPU寄存器中（如果寄存器可以容纳），把经常使用的变量存入CPU寄存器，提高效率。（目前编译器已经可以自行评估变量频率添加，不需人为添加）</p>
@@ -173,28 +174,14 @@
 <p>　　<strong>函数形参</strong>  默认为<code>auto</code></p>
 <h2 id="6-10-3_连接类型">6.10.3 连接类型</h2><p>3种：<code>外连接</code>，<code>内连接</code>，<code>无连接</code>； 表明一个标识符的可见性。</p>
 <p>　　<strong>外连接</strong>：如果一个标识符在其他编译单元或定义它的编译单元中的其他范围被调用。外连接的标识符需要分配运行时的存储空间。</p>
-<pre><code><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">bool</span> flag)</span></span>{}                    <span class="comment">//函数定义外连接</span>
-<span class="keyword">int</span> g_int;                              <span class="comment">//全局变量外连接</span>
-<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//MAX_LENGTH 变成外连接</span>
-<span class="keyword">namespace</span> <span class="title">NS_H</span>                            
-{
-    <span class="keyword">long</span> count;                        <span class="comment">//NS_H::count外连接</span>
-    <span class="function"><span class="keyword">bool</span> <span class="title">g</span><span class="params">()</span></span>;                          <span class="comment">//NS_H::g是外连接，但原型是内连接</span>
-}
-</code></pre><p>　　<strong>内连接</strong>：一个标识符在定义它的编译单元中的其他范围内被调用，但是不能在其他编译单元中被调用。</p>
-<pre><code><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f2</span><span class="params">()</span></span>{}              <span class="comment">//f2内连接</span>
-<span class="keyword">union</span>                           <span class="comment">//匿名联合的成员为内连接</span>
-{
-    <span class="keyword">long</span> count;
-    <span class="keyword">char</span> *p;
-};
-<span class="keyword">class</span> ME{...};                  <span class="comment">//Me是内连接</span>
-<span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//常量为内连接</span>
-<span class="keyword">typedef</span> <span class="keyword">long</span> Integer;           <span class="comment">//typedef为内连接</span>
-</code></pre><p>　　<strong>无连接</strong>：一个只能在声明它的范围内被调用的名字<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> f()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a;          //a是无连接</span><br><span class="line">    class B<span class="decorator">&#123;...&#125;</span>;   //局部类似无连接的，具有程序块作用域</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">(<span class="keyword">bool</span> flag)</span></span>&#123;&#125;                    <span class="comment">//函数定义外连接</span></span><br><span class="line"><span class="keyword">int</span> g_int;                              <span class="comment">//全局变量外连接</span></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//MAX_LENGTH 变成外连接</span></span><br><span class="line"><span class="keyword">namespace</span> NS_H                            </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">long</span> count;                        <span class="comment">//NS_H::count外连接</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">g</span><span class="params">()</span></span>;                          <span class="comment">//NS_H::g是外连接，但原型是内连接</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　<strong>内连接</strong>：一个标识符在定义它的编译单元中的其他范围内被调用，但是不能在其他编译单元中被调用。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">f2</span><span class="params">()</span></span>&#123;&#125;              <span class="comment">//f2内连接</span></span><br><span class="line"><span class="keyword">union</span>                           <span class="comment">//匿名联合的成员为内连接</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">long</span> count;</span><br><span class="line">    <span class="keyword">char</span> *p;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> ME&#123;...&#125;;                  <span class="comment">//Me是内连接</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_LENGTH = <span class="number">1024</span>;    <span class="comment">//常量为内连接</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> Integer;           <span class="comment">//typedef为内连接</span></span><br></pre></td></tr></table></figure>
+<p>　　<strong>无连接</strong>：一个只能在声明它的范围内被调用的名字</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">f</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a;          <span class="comment">//a是无连接</span></span><br><span class="line">    <span class="keyword">class</span> B&#123;...&#125;;   <span class="comment">//局部类似无连接的，具有程序块作用域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>　　区别连接类型和作用域：在两个编译单元中分别定义了同名<code>全局函数</code>和同名<code>全局变量</code>，如下</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#file1.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> var = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#file2.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">var</span> = <span class="number">2</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    printf(<span class="string">'ab'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#file1.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">long</span> var = <span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(<span class="keyword">void</span>)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#file2.cpp</span><br><span class="line"></span><br><span class="line">long var = 2;</span><br><span class="line">bool fun(void)</span><br><span class="line">&#123;</span><br><span class="line">    printf('ab');</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>单独编译file1.cpp和file2.cpp是可以的，同时Build整个程序时会“连接失败”。  因为它们连接类型都是外连接，存储类型都是extern，导致连接二义性。这不是作用域导致的，<strong>如果同名变量或同名函数，其中一个定义为static(变成内连接)</strong>，就可以了。</p>
 <table>
 <thead>
@@ -333,16 +320,17 @@
 <li><strong>一般教科书都鼓励程序员们进行防错设计，但要记住这种编程风格可能会隐瞒错误。当进行防错设计时，如果“不可能发生”的事情的确发生了，则要使用断言进行报警。</strong></li>
 </ul>
 </blockquote>
-<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#例子</span></span><br><span class="line"><span class="type">char</span> *clone_string(<span class="keyword">const</span> <span class="type">char</span> *source)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">char</span> *<span class="literal">result</span>;</span><br><span class="line">    assert(source != <span class="type">NULL</span>);</span><br><span class="line">    <span class="literal">result</span> = (<span class="type">char</span> *)malloc(strlen(source) + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="literal">result</span> != <span class="type">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        strcpy(<span class="literal">result</span>, source);</span><br><span class="line">        assert(strcmp(<span class="literal">result</span>, source) == <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#例子</span></span><br><span class="line"><span class="keyword">char</span> *clone_string(<span class="keyword">const</span> <span class="keyword">char</span> *source)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> *result;</span><br><span class="line">    assert(source != NULL);</span><br><span class="line">    result = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(<span class="built_in">strlen</span>(source) + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span> (result != NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">strcpy</span>(result, source);</span><br><span class="line">        assert(<span class="built_in">strcmp</span>(result, source) == <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>注意到我对source是否为NULL是用assert检查的，但对result是不是为NULL是用if语句判断的，这是因为在调用代码正确的情况下source必然不为NULL，如果断言失败，说明调用代码中有错误，需要修改；但result作为malloc的返回值则不一定，在malloc代码无误的情况下仍然可能返回NULL——当内存块不足时。最后又用assert对strcpy的结果进行检查，因为只要代码正确，无论什么情况strcpy应该正常完成复制，它没有malloc那种异常情况存在。</p>
-<h1 id="6-13_使用const提高函数的健壮性">6.13 使用const提高函数的健壮性</h1><p>　　const不仅仅是定义常量，更大的魅力是可以修饰函数的参数和返回值，甚至函数的定义体。</p>
+<h2 id="6-13_使用const提高函数的健壮性">6.13 使用const提高函数的健壮性</h2><p>　　const不仅仅是定义常量，更大的魅力是可以修饰函数的参数和返回值，甚至函数的定义体。</p>
 <blockquote>
 <ul>
 <li>对于ADT/UDT的输入参数，应该将“值传递”改为“const &amp;传递”，提高效率。例如，将void Func(A a)改为void Func(const A &amp;a)。</li>
 <li>对于基本数据类型的输入参数，不需要修改。例如，不要把void Func(int a)改为void Func(const int &amp;a)。</li>
 </ul>
 </blockquote>
-<p>　　<strong>const修饰函数的返回值</strong>：虽然函数返回值采用“const &amp;”方式可以提高效率，例如：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A&amp; GetA(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure></p>
+<p>　　<strong>const修饰函数的返回值</strong>：虽然函数返回值采用“const &amp;”方式可以提高效率，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> A&amp; GetA(<span class="keyword">void</span>);</span><br></pre></td></tr></table></figure>
 <p>但一定要搞清楚函数究竟是想返回一个对象的“拷贝”还是仅返回“别名”(即引用)就可以了，否则程序易出错。</p>
 
         
@@ -389,7 +377,7 @@
     <div class="comments" id="comments">
       
         <div class="ds-thread" data-thread-key="2015/03/03/《高质量程序设计指南-CC++》第六章.html"
-             data-title="《高质量程序设计指南-C/C++》_第六章" data-url="http://blog.sweetfish1991.com/2015/03/03/《高质量程序设计指南-CC++》第六章.html">
+             data-title="《高质量程序设计指南-C/C++》_第六章" data-url="http://blog.sweetfish.cn/2015/03/03/《高质量程序设计指南-CC++》第六章.html">
         </div>
 
       
@@ -433,21 +421,21 @@
       <div class="site-state motion-element">
         <div class="site-state-item site-state-posts">
           <a href="/archives">
-            <span class="site-state-item-count">17</span>
+            <span class="site-state-item-count">18</span>
             <span class="site-state-item-name">日志</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-categories">
           <a href="/categories">
-            <span class="site-state-item-count">3</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">分类</span>
           </a>
         </div>
 
         <div class="site-state-item site-state-tags">
           
-            <span class="site-state-item-count">2</span>
+            <span class="site-state-item-count">4</span>
             <span class="site-state-item-name">标签</span>
           
         </div>
@@ -498,7 +486,7 @@
         <div class="post-toc">
           
           
-            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-1_存储类型"><span class="nav-number">1.</span> <span class="nav-text">6.10.1 存储类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-3_连接类型"><span class="nav-number">2.</span> <span class="nav-text">6.10.3 连接类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-11_递归"><span class="nav-number">3.</span> <span class="nav-text">6.11 递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-12_断言"><span class="nav-number">4.</span> <span class="nav-text">6.12 断言</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-13_使用const提高函数的健壮性"><span class="nav-number"></span> <span class="nav-text">6.13 使用const提高函数的健壮性</span></a></div>
+            <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-1_存储类型"><span class="nav-number">1.</span> <span class="nav-text">6.10.1 存储类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-10-3_连接类型"><span class="nav-number">2.</span> <span class="nav-text">6.10.3 连接类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-11_递归"><span class="nav-number">3.</span> <span class="nav-text">6.11 递归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-12_断言"><span class="nav-number">4.</span> <span class="nav-text">6.12 断言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-13_使用const提高函数的健壮性"><span class="nav-number">5.</span> <span class="nav-text">6.13 使用const提高函数的健壮性</span></a></li></ol></div>
           
         </div>
         <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -517,7 +505,7 @@
         <div class="copyright">
   
   &copy; &nbsp;  2014 - 
-  2015
+  2016
   <span class="with-love">
     <i class="icon-heart"></i>
   </span>
